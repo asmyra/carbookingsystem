@@ -14,7 +14,7 @@ $sql = "delete from tblbrands  WHERE id=:id";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
-$msg="Page data updated  successfully";
+$msg="Halaman berjaya dikemas kini";
 
 }
 
@@ -33,7 +33,7 @@ $msg="Page data updated  successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System |Admin Manage testimonials   </title>
+	<title>MDKT Car Booking System |Urus Pengguna Berdaftar   </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -83,43 +83,39 @@ $msg="Page data updated  successfully";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Registered Users</h2>
+						<h2 class="page-title">Pengguna Berdaftar</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Reg Users</div>
+							<div class="panel-heading">Pengguna Berdaftar</div>
 							<div class="panel-body">
-							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+							<?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
 										<th>#</th>
-												<th> Name</th>
-											<th>Email </th>
-                							<th>Staff ID</th>
-											<th>Contact no</th>
-										<th>DOB</th>
-										<th>Address</th>
-										<th>Reg Date</th>
-										
+											<th> Nama</th>
+											<th>Emel </th>
+                							<th>ID Staf</th>
+											<th>No. Telefon</th>
+											<th>Alamat</th>
+											<th>Tarikh Daftar</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
 										<th>#</th>
-											<th> Name</th>
-											<th>Email </th>
-                							<th>Staff ID</th>
-											<th>Contact no</th>
-										<th>DOB</th>
-										<th>Address</th>
-										<th>Reg Date</th>
+										<th> Nama</th>
+											<th>Emel </th>
+                							<th>ID Staf</th>
+											<th>No. Telefon</th>
+											<th>Alamat</th>
+											<th>Tarikh Daftar</th>
 										</tr>
 										</tr>
 									</tfoot>
 									<tbody>
-
 									<?php $sql = "SELECT * from  tblusers ";
 $query = $dbh -> prepare($sql);
 $query->execute();
@@ -135,25 +131,16 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->EmailId);?></td>
 											<td><?php echo htmlentities($result->staffid);?></td>
 											<td><?php echo htmlentities($result->ContactNo);?></td>
-											<td><?php echo htmlentities($result->dob);?></td>
 											<td><?php echo htmlentities($result->Address);?></td>
 											<td><?php echo htmlentities($result->RegDate);?></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
-										
 									</tbody>
 								</table>
-
-						
-
 							</div>
 						</div>
-
-					
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

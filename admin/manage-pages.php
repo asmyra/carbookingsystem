@@ -16,7 +16,7 @@ $query = $dbh->prepare($sql);
 $query -> bindParam(':pagetype',$pagetype, PDO::PARAM_STR);
 $query-> bindParam(':pagedetails',$pagedetails, PDO::PARAM_STR);
 $query -> execute();
-$msg="Page data updated  successfully";
+$msg="Halaman berjaya dikemas kini";
 
 }
 
@@ -33,7 +33,7 @@ $msg="Page data updated  successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System | Admin Create Brand</title>
+	<title>MDKT Car Booking System | Kemas Kini Halaman</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -119,7 +119,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				<div class="row">
 					<div class="col-md-12">
 					
-						<h2 class="page-title">Manage Pages </h2>
+						<h2 class="page-title">Urus Halaman </h2>
 
 						<div class="row">
 							<div class="col-md-10">
@@ -129,21 +129,21 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 										<form method="post" name="chngpwd" class="form-horizontal" onSubmit="return valid();">
 										
 											
-  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+  	        	  <?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 											<div class="form-group">
-												<label class="col-sm-4 control-label">Select Page</label>
+												<label class="col-sm-4 control-label">Pilih Halaman</label>
 												<div class="col-sm-8">
 															   <select name="menu1" onChange="MM_jumpMenu('parent',this,0)">
-                  <option value="" selected="selected" class="form-control">***Select One***</option>
-                  <option value="manage-pages.php?type=aboutus">About Us</option>
+                  <option value="" selected="selected" class="form-control">***Pilih Satu***</option>
+                  <option value="manage-pages.php?type=aboutus">Tentang Kami</option>
                 </select>
 												</div>
 											</div>
 											<div class="hr-dashed"></div>
 											
 											<div class="form-group">
-												<label class="col-sm-4 control-label">Selected Page</label>
+												<label class="col-sm-4 control-label">Halaman Terpilih</label>
 												<div class="col-sm-8">
 						<?php
 			
@@ -166,7 +166,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 											</div>
 								
 									<div class="form-group">
-												<label class="col-sm-4 control-label">Page Details </label>
+												<label class="col-sm-4 control-label">Maklumat Halaman </label>
 												<div class="col-sm-8">
 			<textarea class="form-control" rows="5" cols="50" name="pgedetails" id="pgedetails" placeholder="Package Details" required>
 										<?php 
@@ -192,7 +192,7 @@ echo htmlentities($result->detail);
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 								
-												<button type="submit" name="submit" value="Update" id="submit" class="btn-primary btn">Update</button>
+												<button type="submit" name="submit" value="Update" id="submit" class="btn-primary btn">Kemas Kini</button>
 												</div>
 											</div>
 

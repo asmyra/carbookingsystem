@@ -15,7 +15,7 @@ $sql = "delete from tblvehicles  WHERE  id=:delid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':delid',$delid, PDO::PARAM_STR);
 $query -> execute();
-$msg="Vehicle  record deleted successfully";
+$msg="Rekod kenderaan berjaya dihapuskan";
 }
 
 
@@ -32,7 +32,7 @@ $msg="Vehicle  record deleted successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System  |Admin Manage Vehicles   </title>
+	<title>MDKT Car Booking System  | Urus Kenderaan </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -82,39 +82,39 @@ $msg="Vehicle  record deleted successfully";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Manage Vehicles</h2>
+						<h2 class="page-title">Urus Kenderaan</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Vehicle Details</div>
+							<div class="panel-heading">Maklumat Kenderaan</div>
 							<div class="panel-body">
-							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+							<?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
 										<th>#</th>
-											<th>Vehicle Title</th>
-											<th>Brand </th>
-											<th>Fuel Type</th>
-											<th>Model Year</th>
-											<th>Action</th>
+											<th>Nama Kenderaan</th>
+											<th>Model</th>
+											<th>Jenis Bahan Api</th>
+											<th>Tahun Model</th>
+											<th>Tindakan</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
 										<th>#</th>
-										<th>Vehicle Title</th>
-											<th>Brand </th>
-											<th>Fuel Type</th>
-											<th>Model Year</th>
-											<th>Action</th>
+										    <th>Nama Kenderaan</th>
+											<th>Model</th>
+											<th>Jenis Bahan Api</th>
+											<th>Tahun Model</th>
+											<th>Tindakan</th>
 										</tr>
 										</tr>
 									</tfoot>
 									<tbody>
 
-<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
+<?php $sql = "SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -130,7 +130,7 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->FuelType);?></td>
 												<td><?php echo htmlentities($result->ModelYear);?></td>
 		<td><a href="edit-vehicle.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-<a href="manage-vehicles.php?del=<?php echo $result->id;?>" onclick="return confirm('Do you want to delete');"><i class="fa fa-close"></i></a></td>
+<a href="manage-vehicles.php?del=<?php echo $result->id;?>" onclick="return Pengesahan('Adakah anda mahu padam kenderaan');"><i class="fa fa-close"></i></a></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 										

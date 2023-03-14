@@ -19,7 +19,7 @@ else{
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System | Admin Dashboard</title>
+	<title>MDKT Car Booking System | Papan Pemuka Pentadbir</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -50,7 +50,7 @@ else{
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Dashboard</h2>
+						<h2 class="page-title">Papan Pemuka</h2>
 						
 						<div class="row">
 							<div class="col-md-12">
@@ -67,10 +67,10 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 $regusers=$query->rowCount();
 ?>
 													<div class="stat-panel-number h1 "><?php echo htmlentities($regusers);?></div>
-													<div class="stat-panel-title text-uppercase">Reg Users</div>
+													<div class="stat-panel-title text-uppercase">Pengguna Berdaftar</div>
 												</div>
 											</div>
-											<a href="reg-users.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
+											<a href="reg-users.php" class="block-anchor panel-footer">Maklumat Penuh<i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -85,10 +85,10 @@ $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 $totalvehicle=$query1->rowCount();
 ?>
 													<div class="stat-panel-number h1 "><?php echo htmlentities($totalvehicle);?></div>
-													<div class="stat-panel-title text-uppercase">Listed Vehicles</div>
+													<div class="stat-panel-title text-uppercase">Kenderaan Tersenarai</div>
 												</div>
 											</div>
-											<a href="manage-vehicles.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-vehicles.php" class="block-anchor panel-footer text-center">Maklumat Penuh<i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -104,10 +104,10 @@ $bookings=$query2->rowCount();
 ?>
 
 													<div class="stat-panel-number h1 "><?php echo htmlentities($bookings);?></div>
-													<div class="stat-panel-title text-uppercase">Total Bookings</div>
+													<div class="stat-panel-title text-uppercase">Jumlah Tempahan</div>
 												</div>
 											</div>
-											<a href="manage-bookings.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-bookings.php" class="block-anchor panel-footer text-center">Maklumat Penuh<i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -122,10 +122,10 @@ $results3=$query3->fetchAll(PDO::FETCH_OBJ);
 $brands=$query3->rowCount();
 ?>												
 													<div class="stat-panel-number h1 "><?php echo htmlentities($brands);?></div>
-													<div class="stat-panel-title text-uppercase">Listed Brands</div>
+													<div class="stat-panel-title text-uppercase">Model Tersenarai</div>
 												</div>
 											</div>
-											<a href="manage-brands.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
+											<a href="manage-brands.php" class="block-anchor panel-footer text-center">Maklumat Penuh<i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -133,53 +133,10 @@ $brands=$query3->rowCount();
 						</div>
 					</div>
 				</div>
-
-
-
 <div class="row">
 					<div class="col-md-12">
-
-						
-						<div class="row">
-							<div class="col-md-12">
-								<div class="row">
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-primary text-light">
-												<div class="stat-panel text-center">
-<?php 
-$sql4 ="SELECT id from tblsubscribers ";
-$query4 = $dbh -> prepare($sql4);
-$query4->execute();
-$results4=$query4->fetchAll(PDO::FETCH_OBJ);
-$subscribers=$query4->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($subscribers);?></div>
-													<div class="stat-panel-title text-uppercase">Subscibers</div>
-												</div>
-											</div>
-											<a href="manage-subscribers.php" class="block-anchor panel-footer">Full Detail <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-									</div>
-									<div class="col-md-3">
-									</div>
-								
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
-
-
-
-
-
-
-
-
-
 			</div>
 		</div>
 	</div>

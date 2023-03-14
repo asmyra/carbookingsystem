@@ -21,7 +21,7 @@ else{
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System | New Bookings   </title>
+	<title>MDKT Car Booking System | Tempahan Baharu   </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -71,38 +71,38 @@ else{
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">New Bookings</h2>
+						<h2 class="page-title">Tempahan Baharu</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Bookings Info</div>
+							<div class="panel-heading">Maklumat Tempahan</div>
 							<div class="panel-body">
 
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-										<th>#</th>
-											<th>Name</th>
-											<th>Booking No.</th>
-											<th>Vehicle</th>
-											<th>From Date</th>
-											<th>To Date</th>
+											<th>#</th>
+											<th>Nama</th>
+											<th>No. Tempahan</th>
+											<th>Kenderaan</th>
+											<th>Tarikh Mula</th>
+											<th>Tarikh Akhir</th>
 											<th>Status</th>
-											<th>Posting date</th>
-											<th>Action</th>
+											<th>Tarikh Penyiaran</th>
+											<th>Tindakan</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-										<th>#</th>
-										<th>Name</th>
-											<th>Booking No.</th>
-											<th>Vehicle</th>
-											<th>From Date</th>
-											<th>To Date</th>
+											<th>#</th>
+											<th>Nama</th>
+											<th>No. Tempahan</th>
+											<th>Kenderaan</th>
+											<th>Tarikh Mula</th>
+											<th>Tarikh Akhir</th>
 											<th>Status</th>
-											<th>Posting date</th>
-											<th>Action</th>
+											<th>Tarikh Penyiaran</th>
+											<th>Tindakan</th>
 										</tr>
 									</tfoot>
 									<tbody>

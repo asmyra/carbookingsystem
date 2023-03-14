@@ -17,7 +17,7 @@ $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':eid',$eid, PDO::PARAM_STR);
 $query -> execute();
 
-$msg="Booking Successfully Cancelled";
+$msg="Tempahan Berjaya Dibatalkan";
 }
 
 
@@ -32,7 +32,7 @@ $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
 $query -> execute();
 
-$msg="Booking Successfully Confirmed";
+$msg="Tempahan Berjaya Disahkan";
 }
 
 
@@ -49,7 +49,7 @@ $msg="Booking Successfully Confirmed";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System |Admin Manage testimonials   </title>
+	<title>MDKT Car Booking System |Urus Tempahan </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -99,37 +99,37 @@ $msg="Booking Successfully Confirmed";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Manage Bookings</h2>
+						<h2 class="page-title">Urus tempahan</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Bookings Info</div>
+							<div class="panel-heading">Maklumat Tempahan</div>
 							<div class="panel-body">
-							<?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+							<?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
-										<th>#</th>
-											<th>Name</th>
-											<th>Vehicle</th>
-											<th>From Date</th>
-											<th>To Date</th>
+											<th>#</th>
+											<th>Nama</th>
+											<th>Kenderaan</th>
+											<th>Tarikh Mula</th>
+											<th>Tarikh Akhir</th>
 											<th>Status</th>
-											<th>Posting date</th>
-											<th>Action</th>
+											<th>Tarikh Penyiaran</th>
+											<th>Tindakan</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-										<th>#</th>
-										<th>Name</th>
-											<th>Vehicle</th>
-											<th>From Date</th>
-											<th>To Date</th>
+											<th>#</th>
+										    <th>Nama</th>
+											<th>Kenderaan</th>
+											<th>Tarikh Mula</th>
+											<th>Tarikh Akhir</th>
 											<th>Status</th>
-											<th>Posting date</th>
-											<th>Action</th>
+											<th>Tarikh Penyiaran</th>
+											<th>Tindakan</th>
 										</tr>
 									</tfoot>
 									<tbody>

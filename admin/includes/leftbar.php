@@ -1,39 +1,33 @@
 	<nav class="ts-sidebar">
 			<ul class="ts-sidebar-menu">
 			
-				<li class="ts-label">Main</li>
-				<li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+				<li class="ts-label">Utama</li>
+				<li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Papan Pemuka</a></li>
 			
-<li><a href="#"><i class="fa fa-files-o"></i> Brands</a>
+<li><a href="#"><i class="fa fa-files-o"></i> Model</a>
 <ul>
-<li><a href="create-brand.php">Create Brand</a></li>
-<li><a href="manage-brands.php">Manage Brands</a></li>
+<li><a href="create-brand.php">Tambah Model Baharu</a></li>
+<li><a href="manage-brands.php">Urus Model</a></li>
 </ul>
 </li>
 
-<li><a href="#"><i class="fa fa-car"></i> Vehicles</a>
+<li><a href="#"><i class="fa fa-car"></i> Kenderaan</a>
 					<ul>
-						<li><a href="post-avehical.php">Post a Vehicle</a></li>
-						<li><a href="manage-vehicles.php">Manage Vehicles</a></li>
+						<li><a href="post-avehical.php">Tambah Kenderaan Baharu</a></li>
+						<li><a href="manage-vehicles.php">Urus Kenderaan</a></li>
 					</ul>
 				</li>
 
-<li><a href="#"><i class="fa fa-sitemap"></i> Bookings</a>
+<li><a href="#"><i class="fa fa-sitemap"></i> Tempahan Kenderaan</a>
 					<ul>
-						<li><a href="new-bookings.php">New</a></li>
-						<li><a href="confirmed-bookings.php">Confirmed</a></li>
-						<li><a href="canceled-bookings.php">Canceled</a></li>
+						<li><a href="new-bookings.php">Tempahan Baharu</a></li>
+						<li><a href="confirmed-bookings.php">Tempahan Disahkan</a></li>
+						<li><a href="canceled-bookings.php">Tempahan Dibatalkan</a></li>
 					</ul>
 				</li>
-
-		
-
-				
-				<li><a href="manage-contactusquery.php"><i class="fa fa-desktop"></i> Manage Contact Us Query</a></li>
-				<li><a href="reg-users.php"><i class="fa fa-users"></i> Registered Users</a></li>
-			<li><a href="manage-pages.php"><i class="fa fa-files-o"></i> Manage Pages</a></li>
-			<li><a href="update-contactinfo.php"><i class="fa fa-files-o"></i> Update Contact Info</a></li>
-			<li><a href="manage-subscribers.php"><i class="fa fa-table"></i> Manage Subscribers</a></li>
+				<li><a href="reg-users.php"><i class="fa fa-users"></i> Pengguna Berdaftar</a></li>
+			<li><a href="manage-pages.php"><i class="fa fa-files-o"></i> Urus Halaman</a></li>
+			<li><a href="update-contactinfo.php"><i class="fa fa-files-o"></i> Kemas kini Maklumat Perhubungan</a></li>
 
 			</ul>
 		</nav>

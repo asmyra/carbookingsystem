@@ -18,11 +18,11 @@ $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-$msg="Brand Created successfully";
+$msg="Model Dicipta dengan Jayanya";
 }
 else 
 {
-$error="Something went wrong. Please try again";
+$error="Sesuatu telah berlaku. Sila cuba lagi";
 }
 
 }
@@ -39,7 +39,7 @@ $error="Something went wrong. Please try again";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System | Admin Create Brand</title>
+	<title>MDKT Car Booking System | Cipta Model Baharu</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -89,20 +89,20 @@ $error="Something went wrong. Please try again";
 				<div class="row">
 					<div class="col-md-12">
 					
-						<h2 class="page-title">Create Brand</h2>
+						<h2 class="page-title">Cipta Model Baharu</h2>
 
 						<div class="row">
 							<div class="col-md-10">
 								<div class="panel panel-default">
-									<div class="panel-heading">Create Brand</div>
+									<div class="panel-heading">Cipta Model Baharu</div>
 									<div class="panel-body">
 										<form method="post" name="chngpwd" class="form-horizontal" onSubmit="return valid();">
 										
 											
-  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+  	        	  <?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 											<div class="form-group">
-												<label class="col-sm-4 control-label">Brand Name</label>
+												<label class="col-sm-4 control-label">Nama Model</label>
 												<div class="col-sm-8">
 													<input type="text" class="form-control" name="brand" id="brand" required>
 												</div>
@@ -115,7 +115,7 @@ $error="Something went wrong. Please try again";
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
 								
-													<button class="btn btn-primary" name="submit" type="submit">Submit</button>
+													<button class="btn btn-primary" name="submit" type="submit">Hantar</button>
 												</div>
 											</div>
 

@@ -18,10 +18,10 @@ $chngpwd1-> bindParam(':email', $email, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':mobile', $mobile, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
-echo "<script>alert('Your Password succesfully changed');</script>";
+echo "<script>alert('Kata laluan anda telah ditukar');</script>";
 }
 else {
-echo "<script>alert('Email id or Mobile no is invalid');</script>"; 
+echo "<script>alert('emel atau nombor telefon tidak sah');</script>"; 
 }
 }
 
@@ -31,7 +31,7 @@ function valid()
 {
 if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
 {
-alert("New Password and Confirm Password Field do not match  !!");
+alert("Kata Laluan Baharu dan Medan Kata Laluan disahkan tidak sepadan!!");
 document.chngpwd.confirmpassword.focus();
 return false;
 }
@@ -44,7 +44,7 @@ return true;
       <div class="modal-header">
 
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h3 class="modal-title">Password Recovery</h3>
+        <h3 class="modal-title">Pemulihan kata laluan</h3>
       </div>
       <div class="modal-body">
         <div class="row">
@@ -68,8 +68,8 @@ return true;
                 </div>
               </form>
               <div class="text-center">
-                <p class="gray_text">For security reasons we don't store your password. Your password will be reset and a new one will be send.</p>
-                <p><a href="#loginform" data-toggle="modal" data-dismiss="modal"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Back to Login</a></p>
+                <p class="gray_text">Atas sebab keselamatan kami tidak menyimpan kata laluan anda. Kata laluan anda akan ditetapkan semula dan kata laluan baharu akan dihantar.</p>
+                <p><a href="#loginform" data-toggle="modal" data-dismiss="modal"><i class="fa fa-angle-double-left" aria-hidden="true"></i> Kembali ke Log masuk</a></p>
               </div>
             </div>
           </div>

@@ -1,10 +1,9 @@
-
 <header>
   <div class="default-header">
     <div class="container">
       <div class="row">
         <div class="col-sm-3 col-md-2">
-          <div class="logo"> <a href="index.php"><img src="assets/images/SuCars.png" alt="image"/></a> </div>
+          <div class="logo"> <a href="index.php"><img src="assets/images/mdkt.png" alt="image"/></a> </div>
         </div>
         <div class="col-sm-9 col-md-10">
           <div class="header_info">
@@ -21,23 +20,22 @@ $contactno=$result->ContactNo;
 
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-envelope" aria-hidden="true"></i> </div>
-              <p class="uppercase_text">For Support Mail us : </p>
+              <p class="uppercase_text">Emel Kami di : </p>
               <a href="mailto:<?php echo htmlentities($email);?>"><?php echo htmlentities($email);?></a> </div>
             <div class="header_widgets">
               <div class="circle_icon"> <i class="fa fa-phone" aria-hidden="true"></i> </div>
-              <p class="uppercase_text">Service Helpline Call Us: </p>
+              <p class="uppercase_text">Hubungi kami di: </p>
               <a href="tel:<?php echo htmlentities($contactno);?>"><?php echo htmlentities($contactno);?></a> </div>
             <div class="social-follow">
-            
             </div>
    <?php   if(strlen($_SESSION['login'])==0)
 	{	
 ?>
- <div class="login_btn"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login / Register</a> </div>
+ <div class="login_btn"> <a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Log masuk/Daftar</a> </div>
 <?php }
 else{ 
 
-echo "Welcome To MDKT Car Booking System!";
+echo "Selamat Datang ke MDKT Car Booking System!";
  } ?>
           </div>
         </div>
@@ -71,10 +69,10 @@ foreach($results as $result)
    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
               <ul class="dropdown-menu">
            <?php if($_SESSION['login']){?>
-            <li><a href="profile.php">Profile Settings</a></li>
-              <li><a href="update-password.php">Update Password</a></li>
-            <li><a href="my-booking.php">My Booking</a></li>
-            <li><a href="logout.php">Log Out</a></li>
+            <li><a href="profile.php">Tetapan Profil</a></li>
+              <li><a href="update-password.php">Kemas kini kata laluan</a></li>
+            <li><a href="my-booking.php">Tempahan saya</a></li>
+            <li><a href="logout.php">Log keluar</a></li>
             <?php } ?>
           </ul>
             </li>
@@ -90,11 +88,10 @@ foreach($results as $result)
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav">
-          <li><a href="index.php">Home</a>    </li>
-          	 
-          <li><a href="page.php?type=aboutus">About Us</a></li>
-          <li><a href="car-listing.php">Car Listing</a>
-          <li><a href="contact-us.php">Contact Us</a></li>
+          <li><a href="index.php">Halaman Utama</a></li>
+          <li><a href="page.php?type=aboutus">Tentang Kami</a></li>
+          <li><a href="car-listing.php">Senarai Kenderaan</a>
+          <li><a href="contact-us.php">Hubungi Kami</a></li>
 
         </ul>
       </div>

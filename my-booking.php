@@ -161,15 +161,11 @@ foreach($results as $result)
     <th>Car Name</th>
     <th>From Date</th>
     <th>To Date</th>
-    <th>Total Days</th>
-    <th>Rent / Day</th>
   </tr>
   <tr>
     <td><?php echo htmlentities($result->VehiclesTitle);?>, <?php echo htmlentities($result->BrandName);?></td>
      <td><?php echo htmlentities($result->FromDate);?></td>
       <td> <?php echo htmlentities($result->ToDate);?></td>
-       <td><?php echo htmlentities($tds=$result->totaldays);?></td>
-        <td> <?php echo htmlentities($ppd=$result->PricePerDay);?></td>
   </tr>
   <tr>
     <th colspan="4" style="text-align:center;"> Grand Total</th>

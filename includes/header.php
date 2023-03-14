@@ -37,7 +37,7 @@ $contactno=$result->ContactNo;
 <?php }
 else{ 
 
-echo "Welcome To SuCaRS!";
+echo "Welcome To MDKT Car Booking System!";
  } ?>
           </div>
         </div>
@@ -74,8 +74,6 @@ foreach($results as $result)
             <li><a href="profile.php">Profile Settings</a></li>
               <li><a href="update-password.php">Update Password</a></li>
             <li><a href="my-booking.php">My Booking</a></li>
-            <li><a href="post-testimonial.php">Post a Review</a></li>
-          <li><a href="my-testimonials.php">My Review</a></li>
             <li><a href="logout.php">Log Out</a></li>
             <?php } ?>
           </ul>

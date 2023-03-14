@@ -136,12 +136,6 @@ $_SESSION['brndid']=$result->bid;
       <div class="col-md-9">
         <h2><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></h2>
       </div>
-      <div class="col-md-3">
-        <div class="price_info">
-          <p>MYR<?php echo htmlentities($result->PricePerDay);?> </p>Per Day
-         
-        </div>
-      </div>
     </div>
     <div class="row">
       <div class="col-md-9">
@@ -337,10 +331,6 @@ $_SESSION['brndid']=$result->bid;
       
       <!--Side-Bar-->
       <aside class="col-md-3">
-      
-        <div class="share_vehicle">
-          <p>Share: <a href="#"><i class="fa fa-facebook-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-twitter-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a> <a href="#"><i class="fa fa-google-plus-square" aria-hidden="true"></i></a> </p>
-        </div>
         <div class="sidebar_widget">
           <div class="widget_heading">
             <h5><i class="fa fa-envelope" aria-hidden="true"></i>Book Now</h5>
@@ -397,8 +387,6 @@ foreach($results as $result)
             </div>
             <div class="product-listing-content">
               <h5><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
-              <p class="list-price">MYR<?php echo htmlentities($result->PricePerDay);?></p>
-          
               <ul class="features_list">
                 
              <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity);?> seats</li>

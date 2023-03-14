@@ -115,7 +115,6 @@ $msg="Booking Successfully Confirmed";
 											<th>Vehicle</th>
 											<th>From Date</th>
 											<th>To Date</th>
-											<th>Message</th>
 											<th>Status</th>
 											<th>Posting date</th>
 											<th>Action</th>
@@ -128,7 +127,6 @@ $msg="Booking Successfully Confirmed";
 											<th>Vehicle</th>
 											<th>From Date</th>
 											<th>To Date</th>
-											<th>Message</th>
 											<th>Status</th>
 											<th>Posting date</th>
 											<th>Action</th>
@@ -151,7 +149,6 @@ foreach($results as $result)
 											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
 											<td><?php echo htmlentities($result->FromDate);?></td>
 											<td><?php echo htmlentities($result->ToDate);?></td>
-											<td><?php echo htmlentities($result->message);?></td>
 											<td><?php 
 if($result->Status==0)
 {

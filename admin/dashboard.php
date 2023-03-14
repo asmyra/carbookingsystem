@@ -77,7 +77,7 @@ $regusers=$query->rowCount();
 										<div class="panel panel-default">
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
-												<?php 
+<?php 
 $sql1 ="SELECT id from tblvehicles ";
 $query1 = $dbh -> prepare($sql1);;
 $query1->execute();
@@ -108,25 +108,6 @@ $bookings=$query2->rowCount();
 												</div>
 											</div>
 											<a href="manage-bookings.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
-									</div>
-									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-warning text-light">
-												<div class="stat-panel text-center">
-                                            <?php 
-$sql2 ="SELECT id from tblusers ";
-$query2= $dbh -> prepare($sql2);
-$query2->execute();
-$results2=$query2->fetchAll(PDO::FETCH_OBJ);
-$bookings=$query2->rowCount();
-?>
-
-													<div class="stat-panel-number h1 "><?php echo htmlentities($bookings);?></div>
-													<div class="stat-panel-title text-uppercase">Total License ID</div>
-												</div>
-											</div>
-											<a href="manage-licenseid.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
 										</div>
 									</div>
 									<div class="col-md-3">
@@ -181,41 +162,8 @@ $subscribers=$query4->rowCount();
 										</div>
 									</div>
 									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-success text-light">
-												<div class="stat-panel text-center">
-												<?php 
-$sql6 ="SELECT id from tblcontactusquery ";
-$query6 = $dbh -> prepare($sql6);;
-$query6->execute();
-$results6=$query6->fetchAll(PDO::FETCH_OBJ);
-$query=$query6->rowCount();
-?>
-													<div class="stat-panel-number h1 "><?php echo htmlentities($query);?></div>
-													<div class="stat-panel-title text-uppercase">Queries</div>
-												</div>
-											</div>
-											<a href="manage-conactusquery.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
 									</div>
 									<div class="col-md-3">
-										<div class="panel panel-default">
-											<div class="panel-body bk-info text-light">
-												<div class="stat-panel text-center">
-<?php 
-$sql5 ="SELECT id from tbltestimonial ";
-$query5= $dbh -> prepare($sql5);
-$query5->execute();
-$results5=$query5->fetchAll(PDO::FETCH_OBJ);
-$testimonials=$query5->rowCount();
-?>
-
-													<div class="stat-panel-number h1 "><?php echo htmlentities($testimonials);?></div>
-													<div class="stat-panel-title text-uppercase">Testimonials</div>
-												</div>
-											</div>
-											<a href="testimonials.php" class="block-anchor panel-footer text-center">Full Detail &nbsp; <i class="fa fa-arrow-right"></i></a>
-										</div>
 									</div>
 								
 								</div>

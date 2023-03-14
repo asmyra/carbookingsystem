@@ -144,23 +144,14 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->ContactNo);?></td>
 										</tr>
 										<tr>											
-											<th>Student Id</th>
-											<td><?php echo htmlentities($result->StudentId);?></td>
-										</tr>
-										<tr>											
-											<th>License Id</th>
-											<td><?php echo htmlentities($result->LicenseId);?></td>
+											<th>Staff Id</th>
+											<td><?php echo htmlentities($result->StaffId);?></td>
 										</tr>
 											<tr>											
 											<th>Address</th>
 											<td><?php echo htmlentities($result->Address);?></td>
-											<th>City</th>
-											<td><?php echo htmlentities($result->City);?></td>
 										</tr>
-											<tr>											
-											<th>Country</th>
-											<td colspan="3"><?php echo htmlentities($result->Country);?></td>
-										</tr>
+											
 
 										<tr>
 											<th colspan="4" style="text-align:center;color:blue">Booking Details</th>
@@ -177,16 +168,6 @@ foreach($results as $result)
 											<th>To Date</th>
 											<td><?php echo htmlentities($result->ToDate);?></td>
 										</tr>
-<tr>
-	<th>Total Days</th>
-	<td><?php echo htmlentities($tdays=$result->totalnodays);?></td>
-	<th>Rent Per Days</th>
-	<td><?php echo htmlentities($ppdays=$result->PricePerDay);?></td>
-</tr>
-<tr>
-	<th colspan="3" style="text-align:center">Grand Total</th>
-	<td><?php echo htmlentities($tdays*$ppdays);?></td>
-</tr>
 <tr>
 <th>Booking Status</th>
 <td><?php 

@@ -21,7 +21,7 @@ $chngpwd1->execute();
 echo "<script>alert('Kata laluan anda telah ditukar');</script>";
 }
 else {
-echo "<script>alert('emel atau nombor telefon tidak sah');</script>"; 
+echo "<script>alert('Emel atau nombor telefon tidak sah');</script>"; 
 }
 }
 

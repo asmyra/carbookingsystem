@@ -6,7 +6,6 @@ if(isset($_POST['submit']))
 {
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate']; 
-$message=$_POST['message'];
 $useremail=$_SESSION['login'];
 $status=0;
 $vhid=$_GET['vhid'];
@@ -22,28 +21,27 @@ $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 if($query1->rowCount()==0)
 {
 
-$sql="INSERT INTO  tblbooking(BookingNumber,userEmail,VehicleId,FromDate,ToDate,message,Status) VALUES(:bookingno,:useremail,:vhid,:fromdate,:todate,:message,:status)";
+$sql="INSERT INTO  tblbooking(BookingNumber,userEmail,VehicleId,FromDate,ToDate,Status) VALUES(:bookingno,:useremail,:vhid,:fromdate,:todate,:status)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':bookingno',$bookingno,PDO::PARAM_STR);
 $query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
 $query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
 $query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query->bindParam(':todate',$todate,PDO::PARAM_STR);
-$query->bindParam(':message',$message,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
 if($lastInsertId)
 {
-echo "<script>alert('Booking successfull.');</script>";
+echo "<script>alert('Tempahan berjaya');</script>";
 echo "<script type='text/javascript'> document.location = 'my-booking.php'; </script>";
 }
 else 
 {
-echo "<script>alert('Something went wrong. Please try again');</script>";
+echo "<script>alert('Sesuatu telah berlaku. Sila cuba semula.');</script>";
  echo "<script type='text/javascript'> document.location = 'car-listing.php'; </script>";
 } }  else{
- echo "<script>alert('Car already booked for these days');</script>"; 
+ echo "<script>alert('Kenderaan telah ditempah pada hari tersebut.');</script>"; 
  echo "<script type='text/javascript'> document.location = 'car-listing.php'; </script>";
 }
 
@@ -100,7 +98,7 @@ echo "<script>alert('Something went wrong. Please try again');</script>";
 
 <?php 
 $vhid=intval($_GET['vhid']);
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid";
+$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':vhid',$vhid, PDO::PARAM_STR);
 $query->execute();
@@ -121,7 +119,8 @@ $_SESSION['brndid']=$result->bid;
   <?php if($result->Vimage5=="")
 {
 
-} else {
+}
+ else {
   ?>
   <div><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage5);?>" class="img-responsive" alt="image" width="900" height="560"></div>
   <?php } ?>

@@ -3,13 +3,6 @@
 			
 				<li class="ts-label">Utama</li>
 				<li><a href="dashboard.php"><i class="fa fa-dashboard"></i> Papan Pemuka</a></li>
-			
-<li><a href="#"><i class="fa fa-files-o"></i> Model</a>
-<ul>
-<li><a href="create-brand.php">Tambah Model Baharu</a></li>
-<li><a href="manage-brands.php">Urus Model</a></li>
-</ul>
-</li>
 
 <li><a href="#"><i class="fa fa-car"></i> Kenderaan</a>
 					<ul>
@@ -27,6 +20,7 @@
 				</li>
 				<li><a href="reg-users.php"><i class="fa fa-users"></i> Pengguna Berdaftar</a></li>
 			<li><a href="manage-pages.php"><i class="fa fa-files-o"></i> Urus Halaman</a></li>
+			<li><a href=""><i class="fa fa-files-o"></i> Hantar Notifikasi</a></li>
 			<li><a href="update-contactinfo.php"><i class="fa fa-files-o"></i> Kemas kini Maklumat Perhubungan</a></li>
 
 			</ul>

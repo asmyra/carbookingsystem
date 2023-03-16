@@ -96,22 +96,18 @@ $msg="Halaman berjaya dikemas kini";
 										<tr>
 										<th>#</th>
 											<th> Nama</th>
-											<th>Emel </th>
-                							<th>ID Staf</th>
+											<th>Jabatan/Unit </th>
+                							<th>Jawatan</th>
 											<th>No. Telefon</th>
-											<th>Alamat</th>
-											<th>Tarikh Daftar</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
 										<th>#</th>
 										<th> Nama</th>
-											<th>Emel </th>
-                							<th>ID Staf</th>
+											<th>Jabatan/Unit </th>
+                							<th>Jawatan</th>
 											<th>No. Telefon</th>
-											<th>Alamat</th>
-											<th>Tarikh Daftar</th>
 										</tr>
 										</tr>
 									</tfoot>
@@ -128,11 +124,9 @@ foreach($results as $result)
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><?php echo htmlentities($result->EmailId);?></td>
-											<td><?php echo htmlentities($result->staffid);?></td>
+											<td><?php echo htmlentities($result->department);?></td>
+											<td><?php echo htmlentities($result->position);?></td>
 											<td><?php echo htmlentities($result->ContactNo);?></td>
-											<td><?php echo htmlentities($result->Address);?></td>
-											<td><?php echo htmlentities($result->RegDate);?></td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 									</tbody>

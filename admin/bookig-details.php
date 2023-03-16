@@ -49,7 +49,7 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System | New Bookings   </title>
+	<title>MDKT Car Booking System | Tempahan Baharu  </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -99,11 +99,11 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Booking Details</h2>
+						<h2 class="page-title">Maklumat Tempahan</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
-							<div class="panel-heading">Bookings Info</div>
+							<div class="panel-heading">Maklumat Permohonan</div>
 							<div class="panel-body">
 
 
@@ -126,71 +126,65 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {				?>	
-	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->BookingNumber);?> Booking Details </h3>
+	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->BookingNumber);?> Maklumat Tempahan</h3>
 
 		<tr>
-											<th colspan="4" style="text-align:center;color:blue">User Details</th>
+											<th colspan="4" style="text-align:center;color:blue">Maklumat Pengguna</th>
 										</tr>
 										<tr>
-											<th>Booking No.</th>
+											<th>No. Tempahan</th>
 											<td>#<?php echo htmlentities($result->BookingNumber);?></td>
-											<th>Name</th>
+											<th>Nama</th>
 											<td><?php echo htmlentities($result->FullName);?></td>
 										</tr>
 										<tr>											
-											<th>Email Id</th>
-											<td><?php echo htmlentities($result->EmailId);?></td>
-											<th>Contact No</th>
-											<td><?php echo htmlentities($result->ContactNo);?></td>
-										</tr>
-										<tr>											
-											<th>Staff Id</th>
-											<td><?php echo htmlentities($result->StaffId);?></td>
+											<th>Jabatan/Unit</th>
+											<td><?php echo htmlentities($result->department);?></td>
 										</tr>
 											<tr>											
-											<th>Address</th>
-											<td><?php echo htmlentities($result->Address);?></td>
+											<th>Jawatan</th>
+											<td><?php echo htmlentities($result->position);?></td>
 										</tr>
 											
 
 										<tr>
-											<th colspan="4" style="text-align:center;color:blue">Booking Details</th>
+											<th colspan="4" style="text-align:center;color:blue">Maklumat Tempahan</th>
 										</tr>
 											<tr>											
-											<th>Vehicle Name</th>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
-											<th>Booking Date</th>
+											<th>Nombor Kenderaan</th>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesNumber);?></td>
+											<th>Tarikh Tempahan</th>
 											<td><?php echo htmlentities($result->PostingDate);?></td>
 										</tr>
 										<tr>
-											<th>From Date</th>
+											<th>Tarikh Mula</th>
 											<td><?php echo htmlentities($result->FromDate);?></td>
-											<th>To Date</th>
+											<th>Tarikh Akhir</th>
 											<td><?php echo htmlentities($result->ToDate);?></td>
 										</tr>
 <tr>
-<th>Booking Status</th>
+<th>Status Tempahan</th>
 <td><?php 
 if($result->Status==0)
 {
-echo htmlentities('Not Confirmed yet');
+echo htmlentities('Belum disahkan lagi');
 } else if ($result->Status==1) {
-echo htmlentities('Confirmed');
+echo htmlentities('Disahkan');
 }
  else{
- 	echo htmlentities('Cancelled');
+ 	echo htmlentities('Dibatalkan');
  }
 										?></td>
-										<th>Last pdation Date</th>
+										<th>Tarikh Akhir Kemas Kini</th>
 										<td><?php echo htmlentities($result->LastUpdationDate);?></td>
 									</tr>
 
 									<?php if($result->Status==0){ ?>
 										<tr>	
 										<td style="text-align:center" colspan="4">
-				<a href="bookig-details.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')" class="btn btn-primary"> Confirm Booking</a> 
+				<a href="bookig-details.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')" class="btn btn-primary"> Sahkan tempahan</a> 
 
-<a href="bookig-details.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')" class="btn btn-danger"> Cancel Booking</a>
+<a href="bookig-details.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')" class="btn btn-danger"> Batalkan tempahan</a>
 </td>
 </tr>
 <?php } ?>

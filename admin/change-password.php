@@ -26,10 +26,10 @@ $chngpwd1 = $dbh->prepare($con);
 $chngpwd1-> bindParam(':username', $username, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
 $chngpwd1->execute();
-$msg="Your Password succesfully changed";
+$msg="Kata laluan anda telah ditukar";
 }
 else {
-$error="Your current password is not valid.";	
+$error="Kata laluan terkini anda tidak sah";	
 }
 }
 ?>
@@ -45,7 +45,7 @@ $error="Your current password is not valid.";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>Car Rental Portal | Admin Change Password</title>
+	<title>MDKT Car Booking System | Ubah Kata Laluan Admin</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -68,108 +68,89 @@ function valid()
 {
 if(document.chngpwd.newpassword.value!= document.chngpwd.confirmpassword.value)
 {
-alert("New Password and Confirm Password Field do not match  !!");
+alert("Kata laluan tidak sepadan!!!");
 document.chngpwd.confirmpassword.focus();
 return false;
 }
 return true;
 }
 </script>
-  <style>
-		.errorWrap {
-    padding: 10px;
-    margin: 0 0 20px 0;
-    background: #fff;
-    border-left: 4px solid #dd3d36;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-.succWrap{
-    padding: 10px;
-    margin: 0 0 20px 0;
-    background: #fff;
-    border-left: 4px solid #5cb85c;
-    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-		</style>
-
-
+<style>
+		.errorWrap 
+		{
+			padding: 10px;
+			margin: 0 0 20px 0;
+			background: #fff;
+			border-left: 4px solid #dd3d36;
+			-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+			box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+		}
+		.succWrap
+		{
+			padding: 10px;
+			margin: 0 0 20px 0;
+			background: #fff;
+			border-left: 4px solid #5cb85c;
+			-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+			box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+		}
+</style>
 </head>
-
 <body>
-	<?php include('includes/header.php');?>
-	<div class="ts-main-content">
-	<?php include('includes/leftbar.php');?>
-		<div class="content-wrapper">
-			<div class="container-fluid">
-
-				<div class="row">
-					<div class="col-md-12">
-					
-						<h2 class="page-title">Change Password</h2>
-
-						<div class="row">
-							<div class="col-md-10">
-								<div class="panel panel-default">
-									<div class="panel-heading">Form fields</div>
+<?php include('includes/header.php');?>
+<div class="ts-main-content">
+<?php include('includes/leftbar.php');?>
+<div class="content-wrapper">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="page-title">Tukar Kata Laluan</h2>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="panel panel-default">
+								<div class="panel-heading">Isi kata laluan baharu</div>
 									<div class="panel-body">
-										<form method="post" name="chngpwd" class="form-horizontal" onSubmit="return valid();">
-										
-											
-  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-											<div class="form-group">
-												<label class="col-sm-4 control-label">Current Password</label>
-												<div class="col-sm-8">
-													<input type="password" class="form-control" name="password" id="password" required>
-												</div>
-											</div>
-											<div class="hr-dashed"></div>
-											
-											<div class="form-group">
-												<label class="col-sm-4 control-label">New Password</label>
+									<form method="post" name="chngpwd" class="form-horizontal" onSubmit="return valid();">			
+									<?php if($error)
+									{?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php 
+									} 
+									else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+									<div class="form-group">
+										<label class="col-sm-4 control-label">Kata Laluan Terkini</label>
+											<div class="col-sm-8">
+												<input type="password" class="form-control" name="password" id="password" required>
+													</div>
+									</div>
+									<div class="hr-dashed"></div>
+										<div class="form-group">
+											<label class="col-sm-4 control-label">Kata Laluan Baharu</label>
 												<div class="col-sm-8">
 													<input type="password" class="form-control" name="newpassword" id="newpassword" required>
 												</div>
-											</div>
-											<div class="hr-dashed"></div>
-
-											<div class="form-group">
-												<label class="col-sm-4 control-label">Confirm Password</label>
+										</div>
+									<div class="hr-dashed"></div>
+										<div class="form-group">
+											<label class="col-sm-4 control-label">Kata Laluan Disahkan</label>
 												<div class="col-sm-8">
 													<input type="password" class="form-control" name="confirmpassword" id="confirmpassword" required>
 												</div>
+										</div>
+									<div class="hr-dashed"></div>
+										<div class="form-group">
+											<div class="col-sm-8 col-sm-offset-4">
+											<button class="btn btn-primary" name="submit" type="submit">Simpan</button>
 											</div>
-											<div class="hr-dashed"></div>
-										
-								
-											
-											<div class="form-group">
-												<div class="col-sm-8 col-sm-offset-4">
-								
-													<button class="btn btn-primary" name="submit" type="submit">Save changes</button>
-												</div>
-											</div>
-
-										</form>
-
+										</div>
+									</form>
 									</div>
 								</div>
-							</div>
-							
+							</div>	
 						</div>
-						
-					
-
 					</div>
 				</div>
-				
-			
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
@@ -180,8 +161,6 @@ return true;
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
-
 </body>
-
 </html>
 <?php } ?>

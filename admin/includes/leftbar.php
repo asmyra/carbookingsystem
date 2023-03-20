@@ -22,6 +22,5 @@
 			<li><a href="manage-pages.php"><i class="fa fa-files-o"></i> Urus Halaman</a></li>
 			<li><a href=""><i class="fa fa-files-o"></i> Hantar Notifikasi</a></li>
 			<li><a href="update-contactinfo.php"><i class="fa fa-files-o"></i> Kemas kini Maklumat Perhubungan</a></li>
-
 			</ul>
 		</nav>

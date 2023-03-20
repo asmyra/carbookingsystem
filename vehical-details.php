@@ -6,13 +6,13 @@ if(isset($_POST['submit']))
 {
 $fromdate=$_POST['fromdate'];
 $todate=$_POST['todate']; 
-$useremail=$_SESSION['login'];
+$staff_email=$_SESSION['login'];
 $status=0;
-$vhid=$_GET['vhid'];
-$bookingno=mt_rand(100000000, 999999999);
-$ret="SELECT * FROM tblbooking where (:fromdate BETWEEN date(FromDate) and date(ToDate) || :todate BETWEEN date(FromDate) and date(ToDate) || date(FromDate) BETWEEN :fromdate and :todate) and VehicleId=:vhid";
+$vehicles_number=$_GET['vehicles_number'];
+$bookingid=mt_rand(100000000, 999999999);
+$ret="SELECT * FROM booking where (:fromdate BETWEEN date(fromdate) and date(todate) || :todate BETWEEN date(fromdate) and date(todate) || date(fromdate) BETWEEN :fromdate and :todate) and vehicles_number=:vehicles_number";
 $query1 = $dbh -> prepare($ret);
-$query1->bindParam(':vhid',$vhid, PDO::PARAM_STR);
+$query1->bindParam(':vehicles_number',$vehicles_number, PDO::PARAM_STR);
 $query1->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query1->bindParam(':todate',$todate,PDO::PARAM_STR);
 $query1->execute();
@@ -21,11 +21,11 @@ $results1=$query1->fetchAll(PDO::FETCH_OBJ);
 if($query1->rowCount()==0)
 {
 
-$sql="INSERT INTO  tblbooking(BookingNumber,userEmail,VehicleId,FromDate,ToDate,Status) VALUES(:bookingno,:useremail,:vhid,:fromdate,:todate,:status)";
+$sql="INSERT INTO booking(bookingid,staff_email,vehicles_number,fromdate,todate,status) VALUES(:bookingid,:staff_email,:vehicles_number,:fromdate,:todate,:status)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':bookingno',$bookingno,PDO::PARAM_STR);
-$query->bindParam(':useremail',$useremail,PDO::PARAM_STR);
-$query->bindParam(':vhid',$vhid,PDO::PARAM_STR);
+$query->bindParam(':bookingid',$bookingno,PDO::PARAM_STR);
+$query->bindParam(':staff_email',$useremail,PDO::PARAM_STR);
+$query->bindParam(':vehicles_number',$vhid,PDO::PARAM_STR);
 $query->bindParam(':fromdate',$fromdate,PDO::PARAM_STR);
 $query->bindParam(':todate',$todate,PDO::PARAM_STR);
 $query->bindParam(':status',$status,PDO::PARAM_STR);
@@ -54,7 +54,7 @@ echo "<script>alert('Sesuatu telah berlaku. Sila cuba semula.');</script>";
 <html lang="en">
 <head>
 
-<title>MDKT Car Booking System | Vehicle Details</title>
+<title>MDKT Car Booking System | Maklumat Kenderaan</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -97,10 +97,10 @@ echo "<script>alert('Sesuatu telah berlaku. Sila cuba semula.');</script>";
 <!--Listing-Image-Slider-->
 
 <?php 
-$vhid=intval($_GET['vhid']);
+$vehicles_number=intval($_GET['vehicles_number']);
 $sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:vhid";
 $query = $dbh -> prepare($sql);
-$query->bindParam(':vhid',$vhid, PDO::PARAM_STR);
+$query->bindParam(':vehicles_number',$vehicles_number, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -108,7 +108,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {  
-$_SESSION['brndid']=$result->bid;  
+$_SESSION['brndid']=$result->vehicles_number;  
 ?>  
 
 <section id="listing_img_slider">
@@ -142,16 +142,11 @@ $_SESSION['brndid']=$result->bid;
           <ul>
           
             <li> <i class="fa fa-calendar" aria-hidden="true"></i>
-              <h5><?php echo htmlentities($result->ModelYear);?></h5>
+              <h5><?php echo htmlentities($result->vehicles_year);?></h5>
               <p>Reg.Year</p>
             </li>
-            <li> <i class="fa fa-cogs" aria-hidden="true"></i>
-              <h5><?php echo htmlentities($result->FuelType);?></h5>
-              <p>Fuel Type</p>
-            </li>
-       
             <li> <i class="fa fa-user-plus" aria-hidden="true"></i>
-              <h5><?php echo htmlentities($result->SeatingCapacity);?></h5>
+              <h5><?php echo htmlentities($result->seating_capacity);?></h5>
               <p>Seats</p>
             </li>
           </ul>
@@ -332,27 +327,27 @@ $_SESSION['brndid']=$result->bid;
       <aside class="col-md-3">
         <div class="sidebar_widget">
           <div class="widget_heading">
-            <h5><i class="fa fa-envelope" aria-hidden="true"></i>Book Now</h5>
+            <h5><i class="fa fa-envelope" aria-hidden="true"></i>Tempah Sekarang</h5>
           </div>
           <form method="post">
             <div class="form-group">
-              <label>From Date:</label>
-              <input type="date" class="form-control" name="fromdate" placeholder="From Date" required>
+              <label>Tarikh Mula:</label>
+              <input type="date" class="form-control" name="fromdate" placeholder="Tarikh Mula" required>
             </div>
             <div class="form-group">
-              <label>To Date:</label>
-              <input type="date" class="form-control" name="todate" placeholder="To Date" required>
+              <label>Tarikh Akhir:</label>
+              <input type="date" class="form-control" name="todate" placeholder="Tarikh Akhir" required>
             </div>
             <div class="form-group">
-              <textarea rows="4" class="form-control" name="message" placeholder="Message" required></textarea>
+              <textarea rows="4" class="form-control" name="message" placeholder="Tujuan" required></textarea>
             </div>
           <?php if($_SESSION['login'])
               {?>
               <div class="form-group">
-                <input type="submit" class="btn"  name="submit" value="Book Now">
+                <input type="submit" class="btn"  name="submit" value="Tempah Sekarang">
               </div>
               <?php } else { ?>
-<a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Login For Book</a>
+<a href="#loginform" class="btn btn-xs uppercase" data-toggle="modal" data-dismiss="modal">Log masuk untuk tempah</a>
 
               <?php } ?>
           </form>
@@ -370,7 +365,7 @@ $_SESSION['brndid']=$result->bid;
       <div class="row">
 <?php 
 $bid=$_SESSION['brndid'];
-$sql="SELECT tblvehicles.VehiclesTitle,tblbrands.BrandName,tblvehicles.PricePerDay,tblvehicles.FuelType,tblvehicles.ModelYear,tblvehicles.id,tblvehicles.SeatingCapacity,tblvehicles.VehiclesOverview,tblvehicles.Vimage1 from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.VehiclesBrand=:bid";
+$sql="SELECT vehicles.vehicles_brand,vehicles.vehicles_year,vehicles.vehicles_number,vehicles.seating_capacity,vehicles.Vimage1 from vehicles where vehicles=:vehicles_number";
 $query = $dbh -> prepare($sql);
 $query->bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
@@ -382,15 +377,13 @@ foreach($results as $result)
 { ?>      
         <div class="col-md-3 grid_listing">
           <div class="product-listing-m gray-bg">
-            <div class="product-listing-img"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" /> </a>
+            <div class="product-listing-img"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->vehicles_number);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image" /> </a>
             </div>
             <div class="product-listing-content">
               <h5><a href="vehical-details.php?vhid=<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></a></h5>
               <ul class="features_list">
-                
-             <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->SeatingCapacity);?> seats</li>
-                <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->ModelYear);?> model</li>
-                <li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->FuelType);?></li>
+             <li><i class="fa fa-user" aria-hidden="true"></i><?php echo htmlentities($result->seating_capacity);?> seats</li>
+                <li><i class="fa fa-calendar" aria-hidden="true"></i><?php echo htmlentities($result->vehicles_year);?> model</li>
               </ul>
             </div>
           </div>

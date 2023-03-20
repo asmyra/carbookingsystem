@@ -5,14 +5,12 @@ include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
 	{	
 header('location:index.php');
-}
-else{
-
- ?>
-
+	}
+else
+{
+?>
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,8 +18,7 @@ else{
 	<meta name="description" content="">
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
-	
-	<title>MDKT Car Booking System | Tempahan Disahkan </title>
+	<title>MDKT Car Booking System | Tempahan Disahkan	</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -39,45 +36,41 @@ else{
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
-  <style>
-		.errorWrap {
+  	<style>
+	.errorWrap 
+	{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
     border-left: 4px solid #dd3d36;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-.succWrap{
+    }
+    .succWrap
+	{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
     border-left: 4px solid #5cb85c;
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
-}
-		</style>
+    }
+	</style>
 
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
-
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<h2 class="page-title">Tempahan Disahkan</h2>
-
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Maklumat Tempahan</div>
 							<div class="panel-body">
-
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
@@ -88,7 +81,6 @@ else{
 											<th>Tarikh Mula</th>
 											<th>Tarikh Akhir</th>
 											<th>Status</th>
-											<th>Tarikh Penyiaran</th>
 											<th>Tindakan</th>
 										</tr>
 									</thead>
@@ -101,16 +93,13 @@ else{
 											<th>Tarikh Mula</th>
 											<th>Tarikh Akhir</th>
 											<th>Status</th>
-											<th>Tarikh Penyiaran</th>
 											<th>Tindakan</th>
 										</tr>
 									</tfoot>
 									<tbody>
-
 									<?php 
-
 $status=1;
-									$sql = "SELECT tblusers.FullName,tblbrands.BrandName,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id,tblbooking.BookingNumber  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id   where tblbooking.Status=:status";
+$sql = "SELECT staff.fullname,vehicles.vehicles_number,booking.fromdate,booking.todate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,booking.id,booking.BookingNumber  from booking join vehicles on vehicles.bookingid=booking.vehicles_number join staff on staff.staff_email=booking. join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id   where tblbooking.Status=:status";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query->execute();
@@ -119,15 +108,15 @@ $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{				?>	
-										<tr>
-											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><?php echo htmlentities($result->BookingNumber);?></td>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
-											<td><?php echo htmlentities($result->FromDate);?></td>
-											<td><?php echo htmlentities($result->ToDate);?></td>
-											<td><?php 
+{?>	
+<tr>
+	<td><?php echo htmlentities($cnt);?></td>
+	<td><?php echo htmlentities($result->fullname);?></td>
+	<td><?php echo htmlentities($result->bookingid);?></td>
+	<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicles_number);?>"></td>
+	<td><?php echo htmlentities($result->fromdate);?></td>
+	<td><?php echo htmlentities($result->todate);?></td>
+	<td><?php 
 if($result->Status==0)
 {
 echo htmlentities('Not Confirmed yet');
@@ -137,30 +126,20 @@ echo htmlentities('Confirmed');
  else{
  	echo htmlentities('Cancelled');
  }
-										?></td>
-											<td><?php echo htmlentities($result->PostingDate);?></td>
-										<td>
-
-
-<a href="bookig-details.php?bid=<?php echo htmlentities($result->id);?>"> Lihat</a>
+?>
 </td>
-
-										</tr>
-										<?php $cnt=$cnt+1; }} ?>
-										
+<td><?php echo htmlentities($result->PostingDate);?></td>
+<td>
+<a href="booking-details.php?bid=<?php echo htmlentities($result->id);?>"> Lihat</a>
+</td>
+</tr>
+										<?php $cnt=$cnt+1;}}?>
 									</tbody>
 								</table>
-
-						
-
 							</div>
 						</div>
-
-					
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

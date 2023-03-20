@@ -10,20 +10,10 @@ else{
 if(isset($_POST['updateprofile']))
   {
 $name=$_POST['fullname'];
-$mobileno=$_POST['mobilenumber'];
-$dob=$_POST['dob'];
-$adress=$_POST['address'];
-$city=$_POST['city'];
-$country=$_POST['country'];
 $email=$_SESSION['login'];
 $sql="update tblusers set FullName=:name,ContactNo=:mobileno,dob=:dob,Address=:adress,City=:city,Country=:country where EmailId=:email";
 $query = $dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
-$query->bindParam(':mobileno',$mobileno,PDO::PARAM_STR);
-$query->bindParam(':dob',$dob,PDO::PARAM_STR);
-$query->bindParam(':adress',$adress,PDO::PARAM_STR);
-$query->bindParam(':city',$city,PDO::PARAM_STR);
-$query->bindParam(':country',$country,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->execute();
 $msg="Profile Updated Successfully";
@@ -34,7 +24,7 @@ $msg="Profile Updated Successfully";
 <html lang="en">
 <head>
 
-<title>MDKT Car Booking System | My Profile</title>
+<title>MDKT Car Booking System | Profil Saya</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -96,11 +86,11 @@ $msg="Profile Updated Successfully";
   <div class="container">
     <div class="page-header_wrap">
       <div class="page-heading">
-        <h1>Your Profile</h1>
+        <h1>Profil Anda</h1>
       </div>
       <ul class="coustom-breadcrumb">
-        <li><a href="#">Home</a></li>
-        <li>Profile</li>
+        <li><a href="#">Halaman Utama</a></li>
+        <li>Profil</li>
       </ul>
     </div>
   </div>
@@ -112,9 +102,9 @@ $msg="Profile Updated Successfully";
 
 <?php 
 $useremail=$_SESSION['login'];
-$sql = "SELECT * from tblusers where EmailId=:useremail";
+$sql = "SELECT * from tblusers where EmailId=:staff_email";
 $query = $dbh -> prepare($sql);
-$query -> bindParam(':useremail',$useremail, PDO::PARAM_STR);
+$query -> bindParam(':staff_email',$useremail, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
@@ -129,9 +119,9 @@ foreach($results as $result)
       </div>
 
       <div class="dealer_info">
-        <h5><?php echo htmlentities($result->FullName);?></h5>
-        <p><?php echo htmlentities($result->Address);?><br>
-          <?php echo htmlentities($result->City);?>&nbsp;<?php echo htmlentities($result->Country);?></p>
+        <h5><?php echo htmlentities($result->fullname);?></h5>
+        <p><?php echo htmlentities($result->department);?><br>
+          <?php echo htmlentities($result->position);?>&nbsp;</p>
       </div>
     </div>
   

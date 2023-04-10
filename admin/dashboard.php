@@ -78,7 +78,7 @@ $regusers=$query->rowCount();
 											<div class="panel-body bk-success text-light">
 												<div class="stat-panel text-center">
 <?php 
-$sql1 ="SELECT vehicles_number from vehicles ";
+$sql1 ="SELECT vehicleid from vehicles ";
 $query1 = $dbh -> prepare($sql1);;
 $query1->execute();
 $results1=$query1->fetchAll(PDO::FETCH_OBJ);
@@ -96,7 +96,7 @@ $totalvehicle=$query1->rowCount();
 											<div class="panel-body bk-info text-light">
 												<div class="stat-panel text-center">
 <?php 
-$sql2 ="SELECT bookingid from booking ";
+$sql2 ="SELECT bookingid from booking";
 $query2= $dbh -> prepare($sql2);
 $query2->execute();
 $results2=$query2->fetchAll(PDO::FETCH_OBJ);

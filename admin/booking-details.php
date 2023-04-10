@@ -114,9 +114,7 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 
 									<?php 
 $bid=intval($_GET['bid']);
-									$sql = "SELECT tblusers.*,tblbrands.BrandName,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id,tblbooking.BookingNumber,
-DATEDIFF(tblbooking.ToDate,tblbooking.FromDate) as totalnodays,tblvehicles.PricePerDay
-									  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id where tblbooking.id=:bid";
+									$sql = "SELECT * FROM `booking` where booking.id=:bid";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
@@ -153,14 +151,12 @@ foreach($results as $result)
 											<tr>											
 											<th>Nombor Kenderaan</th>
 											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesNumber);?></td>
-											<th>Tarikh Tempahan</th>
-											<td><?php echo htmlentities($result->PostingDate);?></td>
 										</tr>
 										<tr>
-											<th>Tarikh Mula</th>
-											<td><?php echo htmlentities($result->FromDate);?></td>
-											<th>Tarikh Akhir</th>
-											<td><?php echo htmlentities($result->ToDate);?></td>
+											<th>Tarikh</th>
+											<td><?php echo htmlentities($result->date);?></td>
+											<th>Masa</th>
+											<td><?php echo htmlentities($result->time);?></td>
 										</tr>
 <tr>
 <th>Status Tempahan</th>

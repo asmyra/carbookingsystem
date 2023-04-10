@@ -39,13 +39,12 @@ move_uploaded_file($_FILES["img3"]["tmp_name"],"img/vehicleimages/".$_FILES["img
 move_uploaded_file($_FILES["img4"]["tmp_name"],"img/vehicleimages/".$_FILES["img4"]["name"]);
 move_uploaded_file($_FILES["img5"]["tmp_name"],"img/vehicleimages/".$_FILES["img5"]["name"]);
 
-$sql="INSERT INTO tblvehicles(VehiclesTitle,VehiclesBrand,VehiclesOverview,PricePerDay,FuelType,ModelYear,SeatingCapacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,CrashSensor,LeatherSeats) VALUES(:vehicletitle,:brand,:vehicleoverview,:priceperday,:fueltype,:modelyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
+$sql="INSERT INTO tblvehicles(vehicle_number,vehicle_name,vehicle_brand,vehicle_year,seating_capacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,CrashSensor,LeatherSeats) VALUES(:vehiclenumber,:vehiclename,:vehiclebrand,:vehicleyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':vehicletitle',$vehicletitle,PDO::PARAM_STR);
-$query->bindParam(':brand',$brand,PDO::PARAM_STR);
-$query->bindParam(':vehicleoverview',$vehicleoverview,PDO::PARAM_STR);
-$query->bindParam(':fueltype',$fueltype,PDO::PARAM_STR);
-$query->bindParam(':modelyear',$modelyear,PDO::PARAM_STR);
+$query->bindParam(':vehiclenumber',$vehiclenumber,PDO::PARAM_STR);
+$query->bindParam(':vehiclename',$vehiclename,PDO::PARAM_STR);
+$query->bindParam('vehiclebrand',$vehiclebrand,PDO::PARAM_STR);
+$query->bindParam(':vehicleyear',$vehicleyear,PDO::PARAM_STR);
 $query->bindParam(':seatingcapacity',$seatingcapacity,PDO::PARAM_STR);
 $query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
 $query->bindParam(':vimage2',$vimage2,PDO::PARAM_STR);
@@ -147,57 +146,32 @@ $error="Sesuatu telah berlaku. Sila cuba lagi";
 									<div class="panel-heading">Info Asas</div>
 <?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
 									<div class="panel-body">
 <form method="post" class="form-horizontal" enctype="multipart/form-data">
 <div class="form-group">
-<label class="col-sm-2 control-label">Nama Kenderaan<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Nombor Plat Kenderaan<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="vehicletitle" class="form-control" required>
+<input type="text" name="vehiclenumber" class="form-control" required>
 </div>
-<label class="col-sm-2 control-label">Pilih Model<span style="color:red">*</span></label>
-<div class="col-sm-4">
-<select class="selectpicker" name="brandname" required>
-<option value=""> Pilih </option>
-<?php $ret="select id,BrandName from tblbrands";
-$query= $dbh -> prepare($ret);
-//$query->bindParam(':id',$id, PDO::PARAM_STR);
-$query-> execute();
-$results = $query -> fetchAll(PDO::FETCH_OBJ);
-if($query -> rowCount() > 0)
-{
-foreach($results as $result)
-{
-?>
-<option value="<?php echo htmlentities($result->id);?>"><?php echo htmlentities($result->BrandName);?></option>
-<?php }} ?>
-
-</select>
-</div>
-</div>
-											
+</div>										
 <div class="hr-dashed"></div>
 <div class="form-group">
-<label class="col-sm-2 control-label">Kenderaan<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Model Kenderaan<span style="color:red">*</span></label>
 <div class="col-sm-10">
-<textarea class="form-control" name="vehicalorcview" rows="3" required></textarea>
+<textarea class="form-control" name="vehiclename" rows="1" required></textarea>
 </div>
 </div>
-
 <div class="form-group">
 <label class="col-sm-2 control-label">Pilih Jenis Bahan Api<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="fueltype" required>
 <option value="">Pilih</option>
-
 <option value="Petrol">Petrol</option>
 <option value="Diesel">Diesel</option>
 <option value="CNG">CNG</option>
 </select>
 </div>
 </div>
-
-
 <div class="form-group">
 <label class="col-sm-2 control-label">Tahun Model<span style="color:red">*</span></label>
 <div class="col-sm-4">

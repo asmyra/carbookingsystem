@@ -73,14 +73,12 @@ else
 {
 $error="Sesuatu telah berlaku. Sila cuba lagi";
 }
-
 }
 
 
 	?>
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -108,7 +106,8 @@ $error="Sesuatu telah berlaku. Sila cuba lagi";
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
 <style>
-		.errorWrap {
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -116,7 +115,8 @@ $error="Sesuatu telah berlaku. Sila cuba lagi";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -124,22 +124,17 @@ $error="Sesuatu telah berlaku. Sila cuba lagi";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
-
+</style>
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
 	<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-					
 						<h2 class="page-title">Siarkan Kenderaan</h2>
-
 						<div class="row">
 							<div class="col-md-12">
 								<div class="panel panel-default">
@@ -190,7 +185,7 @@ $error="Sesuatu telah berlaku. Sila cuba lagi";
 </div>
 <div class="form-group">
 <div class="col-sm-4">
-Imej 1 <span style="color:red">*</span><input type="file" name="img1" required>
+Imej 1<span style="color:red">*</span><input type="file" name="img1" required>
 </div>
 <div class="col-sm-4">
 Imej 2<span style="color:red">*</span><input type="file" name="img2" required>
@@ -221,22 +216,22 @@ Imej 5<input type="file" name="img5">
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="airconditioner" name="airconditioner" value="1">
-<label for="airconditioner"> Penghawa Dingin </label>
+<label for="airconditioner">Penghawa Dingin </label>
 </div>
 </div>
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="powerdoorlocks" name="powerdoorlocks" value="1">
-<label for="powerdoorlocks"> Kunci Pintu Kuasa </label>
+<label for="powerdoorlocks">Kunci Pintu Kuasa </label>
 </div></div>
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="antilockbrakingsys" name="antilockbrakingsys" value="1">
-<label for="antilockbrakingsys"> Sistem Brek AntiKunci </label>
+<label for="antilockbrakingsys">Sistem Brek AntiKunci </label>
 </div></div>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="brakeassist" name="brakeassist" value="1">
-<label for="brakeassist"> Bantuan Brek </label>
+<label for="brakeassist">Bantuan Brek </label>
 </div>
 </div>
 <div class="form-group">
@@ -244,7 +239,7 @@ Imej 5<input type="file" name="img5">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="powersteering" name="powersteering" value="1">
 <input type="checkbox" id="powersteering" name="powersteering" value="1">
-<label for="inlineCheckbox5"> Power Steering </label>
+<label for="inlineCheckbox5">Power Steering </label>
 </div>
 </div>
 <div class="col-sm-3">
@@ -256,20 +251,18 @@ Imej 5<input type="file" name="img5">
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="passengerairbag" name="passengerairbag" value="1">
-<label for="passengerairbag"> Beg Udara Penumpang </label>
+<label for="passengerairbag">Beg Udara Penumpang </label>
 </div></div>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="powerwindow" name="powerwindow" value="1">
-<label for="powerwindow"> Power Windows </label>
+<label for="powerwindow">Power Windows </label>
 </div>
 </div>
-
-
 <div class="form-group">
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="cdplayer" name="cdplayer" value="1">
-<label for="cdplayer"> Pemain CD </label>
+<label for="cdplayer">Pemain CD </label>
 </div>
 </div>
 <div class="col-sm-3">
@@ -280,43 +273,31 @@ Imej 5<input type="file" name="img5">
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="crashcensor" name="crashcensor" value="1">
-<label for="crashcensor"> Crash Sensor </label>
+<label for="crashcensor">Crash Sensor </label>
 </div></div>
 <div class="col-sm-3">
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="leatherseats" name="leatherseats" value="1">
-<label for="leatherseats"> Tempat Duduk Kulit </label>
+<label for="leatherseats">Tempat Duduk Kulit </label>
 </div>
 </div>
 </div>
-
-
-
-
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-2">
 													<button class="btn btn-default" type="reset">Batal</button>
 													<button class="btn btn-primary" name="submit" type="submit">Simpan Tetapan</button>
 												</div>
 											</div>
-
 										</form>
 									</div>
 								</div>
 							</div>
 						</div>
-						
-					
-
 					</div>
 				</div>
-				
-			
-
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>

@@ -3,16 +3,15 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
+{	
+	header('location:index.php');
 }
-else{
+else
+{
 
- ?>
-
+?>
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,8 +38,9 @@ else{
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
-  <style>
-		.errorWrap {
+<style>
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -48,7 +48,8 @@ else{
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -56,53 +57,46 @@ else{
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
+</style>
 </head>
 <body>
-	<?php include('includes/header.php');?>
-
+<?php include('includes/header.php');?>
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<h2 class="page-title">Tempahan Dibatalkan</h2>
-
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Maklumat Tempahan</div>
-							<div class="panel-body">
-
-								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
-									<thead>
+								<div class="panel-body">
+									<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+										<thead>
 										<tr>
 										<th>#</th>
 										<th>Nama</th>
 											<th>No. Tempahan</th>
 											<th>Kenderaan</th>
-											<th>Tarikh Mula</th>
-											<th>Tarikh Akhir</th>
+											<th>Tarikh</th>
+											<th>Masa</th>
 											<th>Status</th>
-											<th>Tarikh Penyiaran</th>
 											<th>Tindakan</th>
 										</tr>
-									</thead>
-									<tfoot>
+										</thead>
+										<tfoot>
 										<tr>
 										<th>#</th>
 										<th>Nama</th>
 											<th>No. Tempahan</th>
 											<th>Kenderaan</th>
-											<th>Tarikh Mula</th>
-											<th>Tarikh Akhir</th>
+											<th>Tarikh</th>
+											<th>Masa</th>
 											<th>Status</th>
-											<th>Tarikh Penyiaran</th>
 											<th>Tindakan</th>
 										</tr>
-									</tfoot>
+										</tfoot>
 									<tbody>
 									<?php 
 $status=2;
@@ -126,18 +120,20 @@ foreach($results as $result)
 											<td><?php 
 if($result->status==0)
 {
-echo htmlentities('Not Confirmed yet');
-} else if ($result->status==1) {
-echo htmlentities('Confirmed');
+	echo htmlentities('Not Confirmed yet');
+} 
+else if ($result->status==1) 
+{
+	echo htmlentities('Confirmed');
 }
- else{
+else
+{
  	echo htmlentities('Cancelled');
- }
+}
 										?></td>
 										<td>
-<a href="bookig-details.php?bid=<?php echo htmlentities($result->id);?>"> View</a>
+<a href="booking-details.php?bid=<?php echo htmlentities($result->id);?>"> View</a>
 </td>
-
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
 									</tbody>
@@ -146,11 +142,9 @@ echo htmlentities('Confirmed');
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
@@ -163,4 +157,6 @@ echo htmlentities('Confirmed');
 	<script src="js/main.js"></script>
 </body>
 </html>
-<?php } ?>
+<?php 
+} 
+?>

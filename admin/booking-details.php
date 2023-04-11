@@ -68,7 +68,8 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
   <style>
-		.errorWrap {
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -76,7 +77,8 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -84,10 +86,8 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
-
+</style>
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
 
@@ -95,24 +95,17 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<h2 class="page-title">Maklumat Tempahan</h2>
-
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Maklumat Permohonan</div>
 							<div class="panel-body">
-
-
 <div id="print">
-								<table border="1"  class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%"  >
-				
-									<tbody>
-
-									<?php 
+								<table border="1"  class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+<tbody>
+<?php 
 $bid=intval($_GET['bid']);
 									$sql = "SELECT * FROM `booking` where booking.id=:bid";
 $query = $dbh -> prepare($sql);
@@ -124,7 +117,7 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {				?>	
-	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->BookingNumber);?> Maklumat Tempahan</h3>
+	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->Bookingid);?> Maklumat Tempahan</h3>
 
 		<tr>
 											<th colspan="4" style="text-align:center;color:blue">Maklumat Pengguna</th>
@@ -150,7 +143,7 @@ foreach($results as $result)
 										</tr>
 											<tr>											
 											<th>Nombor Kenderaan</th>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesNumber);?></td>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>">,<?php echo htmlentities($result->VehiclesNumber);?></td>
 										</tr>
 										<tr>
 											<th>Tarikh</th>
@@ -160,50 +153,45 @@ foreach($results as $result)
 										</tr>
 <tr>
 <th>Status Tempahan</th>
-<td><?php 
+<td>
+<?php 
 if($result->Status==0)
 {
-echo htmlentities('Belum disahkan lagi');
-} else if ($result->Status==1) {
-echo htmlentities('Disahkan');
+	echo htmlentities('Belum disahkan lagi');
 }
- else{
+else if ($result->Status==1)
+{
+	echo htmlentities('Disahkan');
+}
+else
+{
  	echo htmlentities('Dibatalkan');
- }
-										?></td>
-										<th>Tarikh Akhir Kemas Kini</th>
-										<td><?php echo htmlentities($result->LastUpdationDate);?></td>
-									</tr>
-
-									<?php if($result->Status==0){ ?>
-										<tr>	
-										<td style="text-align:center" colspan="4">
-				<a href="bookig-details.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')" class="btn btn-primary"> Sahkan tempahan</a> 
-
-<a href="bookig-details.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')" class="btn btn-danger"> Batalkan tempahan</a>
+}
+?>
+</td>
+</tr>
+<?php if($result->Status==0)
+{?>
+<tr>	
+<td style="text-align:center" colspan="4">
+		<a href="booking-details.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')" class="btn btn-primary"> Sahkan tempahan</a>
+		<a href="booking-details.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')" class="btn btn-danger"> Batalkan tempahan</a>
 </td>
 </tr>
 <?php } ?>
 										<?php $cnt=$cnt+1; }} ?>
-										
 									</tbody>
 								</table>
 								<form method="post">
 	   <input name="Submit2" type="submit" class="txtbox4" value="Print" onClick="return f3();" style="cursor: pointer;"  />
 	</form>
-
 							</div>
 						</div>
-
-					
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>

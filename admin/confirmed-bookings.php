@@ -56,7 +56,6 @@ else
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     }
 	</style>
-
 </head>
 <body>
 	<?php include('includes/header.php');?>
@@ -78,8 +77,8 @@ else
 										<th>Nama</th>
 											<th>No. Tempahan</th>
 											<th>Kenderaan</th>
-											<th>Tarikh Mula</th>
-											<th>Tarikh Akhir</th>
+											<th>Tarikh</th>
+											<th>Masa</th>
 											<th>Status</th>
 											<th>Tindakan</th>
 										</tr>
@@ -90,8 +89,8 @@ else
 										<th>Nama</th>
 											<th>No. Tempahan</th>
 											<th>Kenderaan</th>
-											<th>Tarikh Mula</th>
-											<th>Tarikh Akhir</th>
+											<th>Tarikh</th>
+											<th>Masa</th>
 											<th>Status</th>
 											<th>Tindakan</th>
 										</tr>
@@ -99,7 +98,7 @@ else
 									<tbody>
 									<?php 
 $status=1;
-$sql = "SELECT staff.fullname,vehicles.vehicles_number,booking.fromdate,booking.todate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,booking.id,booking.BookingNumber  from booking join vehicles on vehicles.bookingid=booking.vehicles_number join staff on staff.staff_email=booking. join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id   where tblbooking.Status=:status";
+$sql = "SELECT SELECT * FROM `booking` where booking.Status=:status";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query->execute();
@@ -114,8 +113,8 @@ foreach($results as $result)
 	<td><?php echo htmlentities($result->fullname);?></td>
 	<td><?php echo htmlentities($result->bookingid);?></td>
 	<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicles_number);?>"></td>
-	<td><?php echo htmlentities($result->fromdate);?></td>
-	<td><?php echo htmlentities($result->todate);?></td>
+	<td><?php echo htmlentities($result->Date);?></td>
+	<td><?php echo htmlentities($result->Time);?></td>
 	<td><?php 
 if($result->Status==0)
 {
@@ -128,9 +127,8 @@ echo htmlentities('Confirmed');
  }
 ?>
 </td>
-<td><?php echo htmlentities($result->PostingDate);?></td>
 <td>
-<a href="booking-details.php?bid=<?php echo htmlentities($result->id);?>"> Lihat</a>
+<a href="booking-details.php?bid=<?php echo htmlentities($result->id);?>">Lihat</a>
 </td>
 </tr>
 										<?php $cnt=$cnt+1;}}?>
@@ -143,7 +141,6 @@ echo htmlentities('Confirmed');
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>

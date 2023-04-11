@@ -116,13 +116,15 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {?>	
-										<tr>
-											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->vehicles_number);?></td>
-											<td><?php echo htmlentities($result->vehicles_year);?></td>
-		<td><a href="edit-vehicle.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-<a href="manage-vehicles.php?del=<?php echo $result->id;?>" onclick="return Pengesahan('Adakah anda mahu padam kenderaan');"><i class="fa fa-close"></i></a></td>
-										</tr>
+<tr>
+	<td><?php echo htmlentities($cnt);?></td>
+	<td><?php echo htmlentities($result->vehicles_number);?></td>
+	<td><?php echo htmlentities($result->vehicles_year);?></td>
+	<td>
+		<a href="edit-vehicle.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+		<a href="manage-vehicles.php?del=<?php echo $result->id;?>" onclick="return Pengesahan('Adakah anda mahu padam kenderaan');"><i class="fa fa-close"></i></a>
+	</td>
+</tr>
 										<?php $cnt=$cnt+1; }} ?>
 									</tbody>
 								</table>

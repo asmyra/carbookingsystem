@@ -3,18 +3,18 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
+{	
+	header('location:index.php');
 }
-else{ 
+else
+{ 
 
 if(isset($_POST['submit']))
   {
-$vehicletitle=$_POST['vehicletitle'];
-$brand=$_POST['brandname'];
-$vehicleoverview=$_POST['vehicalorcview'];
-$fueltype=$_POST['fueltype'];
-$modelyear=$_POST['modelyear'];
+$vehicletitle=$_POST['vehiclenumber'];
+$vehicleoverview=$_POST['vehiclename'];
+$fueltype=$_POST['vehiclebrand'];
+$modelyear=$_POST['vehicleyear'];
 $seatingcapacity=$_POST['seatingcapacity'];
 $vimage1=$_FILES["img1"]["name"];
 $vimage2=$_FILES["img2"]["name"];
@@ -39,13 +39,14 @@ move_uploaded_file($_FILES["img3"]["tmp_name"],"img/vehicleimages/".$_FILES["img
 move_uploaded_file($_FILES["img4"]["tmp_name"],"img/vehicleimages/".$_FILES["img4"]["name"]);
 move_uploaded_file($_FILES["img5"]["tmp_name"],"img/vehicleimages/".$_FILES["img5"]["name"]);
 
-$sql="INSERT INTO tblvehicles(vehicle_number,vehicle_name,vehicle_brand,vehicle_year,seating_capacity,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,CrashSensor,LeatherSeats) VALUES(:vehiclenumber,:vehiclename,:vehiclebrand,:vehicleyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
+$sql="INSERT INTO tblvehicles(vehicle_number,vehicle_name,vehicle_brand,vehicle_year,seating_capacity,fuel_type,Vimage1,Vimage2,Vimage3,Vimage4,Vimage5,AirConditioner,PowerDoorLocks,AntiLockBrakingSystem,BrakeAssist,PowerSteering,DriverAirbag,PassengerAirbag,PowerWindows,CDPlayer,CentralLocking,CrashSensor,LeatherSeats) VALUES(:vehiclenumber,:vehiclename,:vehiclebrand,:vehicleyear,:seatingcapacity,:vimage1,:vimage2,:vimage3,:vimage4,:vimage5,:airconditioner,:powerdoorlocks,:antilockbrakingsys,:brakeassist,:powersteering,:driverairbag,:passengerairbag,:powerwindow,:cdplayer,:centrallocking,:crashcensor,:leatherseats)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':vehiclenumber',$vehiclenumber,PDO::PARAM_STR);
 $query->bindParam(':vehiclename',$vehiclename,PDO::PARAM_STR);
 $query->bindParam('vehiclebrand',$vehiclebrand,PDO::PARAM_STR);
 $query->bindParam(':vehicleyear',$vehicleyear,PDO::PARAM_STR);
 $query->bindParam(':seatingcapacity',$seatingcapacity,PDO::PARAM_STR);
+$query->bindParam(':fueltype',$seatingcapacity,PDO::PARAM_STR);
 $query->bindParam(':vimage1',$vimage1,PDO::PARAM_STR);
 $query->bindParam(':vimage2',$vimage2,PDO::PARAM_STR);
 $query->bindParam(':vimage3',$vimage3,PDO::PARAM_STR);
@@ -170,7 +171,7 @@ $error="Sesuatu telah berlaku. Sila cuba lagi";
 <div class="form-group">
 <label class="col-sm-2 control-label">Tahun Model<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="modelyear" class="form-control" required>
+<input type="text" name="vehicleyear" class="form-control" required>
 </div>
 <label class="col-sm-2 control-label">Kapasiti Tempat Duduk<span style="color:red">*</span></label>
 <div class="col-sm-4">

@@ -11,7 +11,7 @@ if(isset($_REQUEST['eid']))
 	{
 $eid=intval($_GET['eid']);
 $status="2";
-$sql = "UPDATE tblbooking SET Status=:status WHERE  id=:eid";
+$sql = "UPDATE booking SET Status=:status WHERE  id=:eid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':eid',$eid, PDO::PARAM_STR);
@@ -26,7 +26,7 @@ if(isset($_REQUEST['aeid']))
 $aeid=intval($_GET['aeid']);
 $status=1;
 
-$sql = "UPDATE tblbooking SET Status=:status WHERE  id=:aeid";
+$sql = "UPDATE booking SET Status=:status WHERE  id=:aeid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
@@ -99,7 +99,7 @@ $msg="Tempahan Berjaya Disahkan";
 				<div class="row">
 					<div class="col-md-12">
 
-						<h2 class="page-title">Urus tempahan</h2>
+						<h2 class="page-title">Urus Tempahan</h2>
 
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
@@ -113,28 +113,26 @@ $msg="Tempahan Berjaya Disahkan";
 											<th>#</th>
 											<th>Nama</th>
 											<th>Kenderaan</th>
-											<th>Tarikh Mula</th>
-											<th>Tarikh Akhir</th>
+											<th>Tarikh</th>
+											<th>Masa</th>
 											<th>Status</th>
-											<th>Tarikh Penyiaran</th>
 											<th>Tindakan</th>
 										</tr>
 									</thead>
 									<tfoot>
 										<tr>
-											<th>#</th>
-										    <th>Nama</th>
+										<th>#</th>
+											<th>Nama</th>
 											<th>Kenderaan</th>
-											<th>Tarikh Mula</th>
-											<th>Tarikh Akhir</th>
+											<th>Tarikh</th>
+											<th>Masa</th>
 											<th>Status</th>
-											<th>Tarikh Penyiaran</th>
 											<th>Tindakan</th>
 										</tr>
 									</tfoot>
 									<tbody>
 
-									<?php $sql = "SELECT tblusers.FullName,tblbrands.BrandName,tblvehicles.VehiclesTitle,tblbooking.FromDate,tblbooking.ToDate,tblbooking.message,tblbooking.VehicleId as vid,tblbooking.Status,tblbooking.PostingDate,tblbooking.id  from tblbooking join tblvehicles on tblvehicles.id=tblbooking.VehicleId join tblusers on tblusers.EmailId=tblbooking.userEmail join tblbrands on tblvehicles.VehiclesBrand=tblbrands.id  ";
+									<?php $sql = "SELECT * FROM `booking`";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -146,9 +144,9 @@ foreach($results as $result)
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
-											<td><?php echo htmlentities($result->FromDate);?></td>
-											<td><?php echo htmlentities($result->ToDate);?></td>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>"><?php echo htmlentities($result->VehiclesTitle);?></td>
+											<td><?php echo htmlentities($result->Date);?></td>
+											<td><?php echo htmlentities($result->Time);?></td>
 											<td><?php 
 if($result->Status==0)
 {
@@ -160,7 +158,6 @@ echo htmlentities('Confirmed');
  	echo htmlentities('Cancelled');
  }
 										?></td>
-											<td><?php echo htmlentities($result->PostingDate);?></td>
 										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')"> Confirm</a> /
 
 
@@ -169,24 +166,15 @@ echo htmlentities('Confirmed');
 
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>
-										
 									</tbody>
 								</table>
-
-						
-
 							</div>
 						</div>
-
-					
-
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>

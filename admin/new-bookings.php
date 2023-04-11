@@ -40,7 +40,8 @@ else{
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
   <style>
-		.errorWrap {
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -48,7 +49,8 @@ else{
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -56,28 +58,21 @@ else{
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
-
+	</style>
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
-
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<h2 class="page-title">Tempahan Baharu</h2>
-
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Maklumat Tempahan</div>
 							<div class="panel-body">
-
 								<table id="zctb" class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
 									<thead>
 										<tr>
@@ -118,26 +113,27 @@ foreach($results as $result)
 {				?>	
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><?php echo htmlentities($result->BookingNumber);?></td>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>"><?php echo htmlentities($result->BrandName);?> , <?php echo htmlentities($result->VehiclesTitle);?></td>
+											<td><?php echo htmlentities($result->fullname);?></td>
+											<td><?php echo htmlentities($result->bookingid);?></td>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>"></td>
 											<td><?php echo htmlentities($result->date);?></td>
 											<td><?php echo htmlentities($result->time);?></td>
 											<td><?php 
 if($result->Status==0)
 {
-echo htmlentities('Not Confirmed yet');
-} else if ($result->Status==1) {
-echo htmlentities('Confirmed');
+	echo htmlentities('Not Confirmed yet');
+} 
+else if ($result->Status==1) 
+{
+	echo htmlentities('Confirmed');
 }
- else{
+else
+{
  	echo htmlentities('Cancelled');
- }
+}
 										?></td>
-										<td>
-
-
-<a href="bookig-details.php?bid=<?php echo htmlentities($result->id);?>"> View</a>
+<td>
+<a href="booking-details.php?bid=<?php echo htmlentities($result->id);?>"> View</a>
 </td>
 										</tr>
 										<?php $cnt=$cnt+1; }} ?>

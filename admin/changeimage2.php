@@ -3,32 +3,27 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
+{	
+	header('location:index.php');
 }
-else{
+else
+{
 // Code for change password	
 if(isset($_POST['update']))
 {
 $vimage=$_FILES["img2"]["name"];
 $id=intval($_GET['imgid']);
 move_uploaded_file($_FILES["img2"]["tmp_name"],"img/vehicleimages/".$_FILES["img2"]["name"]);
-$sql="update tblvehicles set Vimage2=:vimage where id=:id";
+$sql="update vehicles set Vimage2=:vimage where id=:id";
 $query = $dbh->prepare($sql);
 $query->bindParam(':vimage',$vimage,PDO::PARAM_STR);
 $query->bindParam(':id',$id,PDO::PARAM_STR);
 $query->execute();
-
 $msg="Image updated successfully";
-
-
-
 }
 ?>
-
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,7 +51,8 @@ $msg="Image updated successfully";
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
   <style>
-		.errorWrap {
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -64,7 +60,8 @@ $msg="Image updated successfully";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -72,41 +69,30 @@ $msg="Image updated successfully";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
-
-
+</style>
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
 	<div class="ts-main-content">
 	<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-					
 						<h2 class="page-title">Vehicle Image 2 </h2>
-
 						<div class="row">
 							<div class="col-md-10">
 								<div class="panel panel-default">
 									<div class="panel-heading">Vehicle Image 2 Details</div>
 									<div class="panel-body">
-										<form method="post" class="form-horizontal" enctype="multipart/form-data">
-										
-											
+<form method="post" class="form-horizontal" enctype="multipart/form-data">	
   	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
 				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
-
-
-
 <div class="form-group">
-												<label class="col-sm-4 control-label">Current Image2</label>
+<label class="col-sm-4 control-label">Current Image2</label>
 <?php 
 $id=intval($_GET['imgid']);
-$sql ="SELECT Vimage2 from tblvehicles where tblvehicles.id=:id";
+$sql ="SELECT Vimage2 from vehicles where vehicles.id=:id";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':id', $id, PDO::PARAM_STR);
 $query->execute();
@@ -122,43 +108,28 @@ foreach($results as $result)
 </div>
 <?php }}?>
 </div>
-
-											<div class="form-group">
-												<label class="col-sm-4 control-label">Upload New Image 1<span style="color:red">*</span></label>
-												<div class="col-sm-8">
-											<input type="file" name="img2" required>
-												</div>
-											</div>
-											<div class="hr-dashed"></div>
-											
-										
-								
-											
-											<div class="form-group">
-												<div class="col-sm-8 col-sm-offset-4">
-								
-													<button class="btn btn-primary" name="update" type="submit">Update</button>
-												</div>
-											</div>
-
-										</form>
-
+<div class="form-group">
+	<label class="col-sm-4 control-label">Upload New Image 1<span style="color:red">*</span></label>
+		<div class="col-sm-8">
+		<input type="file" name="img2" required>
+		</div>
+</div>
+<div class="hr-dashed"></div>
+	<div class="form-group">
+		<div class="col-sm-8 col-sm-offset-4">
+			<button class="btn btn-primary" name="update" type="submit">Update</button>
+		</div>
+	</div>
+</form>
 									</div>
 								</div>
 							</div>
-							
 						</div>
-						
-					
-
 					</div>
 				</div>
-				
-			
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>
@@ -169,8 +140,6 @@ foreach($results as $result)
 	<script src="js/fileinput.js"></script>
 	<script src="js/chartData.js"></script>
 	<script src="js/main.js"></script>
-
 </body>
-
 </html>
 <?php } ?>

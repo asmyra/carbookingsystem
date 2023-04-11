@@ -3,10 +3,11 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
+{	
+	header('location:index.php');
 }
-else{
+else
+{
 if(isset($_GET['del']))
 {
 $id=$_GET['del'];
@@ -15,16 +16,10 @@ $query = $dbh->prepare($sql);
 $query -> bindParam(':id',$id, PDO::PARAM_STR);
 $query -> execute();
 $msg="Halaman berjaya dikemas kini";
-
 }
-
-
-
  ?>
-
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +28,7 @@ $msg="Halaman berjaya dikemas kini";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System |Urus Pengguna Berdaftar   </title>
+	<title>MDKT Car Booking System |Urus Pengguna Berdaftar</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -51,8 +46,9 @@ $msg="Halaman berjaya dikemas kini";
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
-  <style>
-		.errorWrap {
+<style>
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -60,7 +56,8 @@ $msg="Halaman berjaya dikemas kini";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -68,23 +65,17 @@ $msg="Halaman berjaya dikemas kini";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
-
+</style>
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
-
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
-
 						<h2 class="page-title">Pengguna Berdaftar</h2>
-
 						<!-- Zero Configuration Table -->
 						<div class="panel panel-default">
 							<div class="panel-heading">Pengguna Berdaftar</div>
@@ -112,7 +103,7 @@ $msg="Halaman berjaya dikemas kini";
 										</tr>
 									</tfoot>
 									<tbody>
-									<?php $sql = "SELECT * from  tblusers ";
+									<?php $sql = "SELECT * from  staff";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -121,14 +112,14 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {				?>	
-										<tr>
-											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><?php echo htmlentities($result->department);?></td>
-											<td><?php echo htmlentities($result->position);?></td>
-											<td><?php echo htmlentities($result->ContactNo);?></td>
-										</tr>
-										<?php $cnt=$cnt+1; }} ?>
+<tr>
+	<td><?php echo htmlentities($cnt);?></td>
+	<td><?php echo htmlentities($result->FullName);?></td>
+	<td><?php echo htmlentities($result->department);?></td>
+	<td><?php echo htmlentities($result->position);?></td>
+	<td><?php echo htmlentities($result->ContactNo);?></td>
+</tr>
+<?php $cnt=$cnt+1; }} ?>
 									</tbody>
 								</table>
 							</div>
@@ -138,7 +129,6 @@ foreach($results as $result)
 			</div>
 		</div>
 	</div>
-
 	<!-- Loading Scripts -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap-select.min.js"></script>

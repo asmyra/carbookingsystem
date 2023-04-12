@@ -3,14 +3,12 @@
 if(isset($_POST['signup']))
 {
 $fname=$_POST['fullname'];
-$email=$_POST['emailid'];
-$mobile=$_POST['mobileno'];
+$email=$_POST['staffemail'];
 $password=md5($_POST['password']); 
-$sql="INSERT INTO tblusers(FullName,EmailId,ContactNo,Password) VALUES(:fname,:email,:mobile,:password)";
+$sql="INSERT INTO staff(FullName,staffemail,Password) VALUES(:fullname,:staffemail,:password)";
 $query = $dbh->prepare($sql);
-$query->bindParam(':fname',$fname,PDO::PARAM_STR);
-$query->bindParam(':email',$email,PDO::PARAM_STR);
-$query->bindParam(':mobile',$mobile,PDO::PARAM_STR);
+$query->bindParam(':fullname',$fname,PDO::PARAM_STR);
+$query->bindParam(':staffemail',$email,PDO::PARAM_STR);
 $query->bindParam(':password',$password,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -32,7 +30,7 @@ function checkAvailability() {
 $("#loaderIcon").show();
 jQuery.ajax({
 url: "check_availability.php",
-data:'emailid='+$("#emailid").val(),
+data:'staffemail='+$("#staffemail").val(),
 type: "POST",
 success:function(data){
 $("#user-availability-status").html(data);
@@ -57,11 +55,8 @@ error:function (){}
                 <div class="form-group">
                   <input type="text" class="form-control" name="fullname" placeholder="Nama penuh" required="required">
                 </div>
-                      <div class="form-group">
-                  <input type="text" class="form-control" name="mobileno" placeholder="Nombor telefon" maxlength="10" required="required">
-                </div>
                 <div class="form-group">
-                  <input type="email" class="form-control" name="emailid" id="emailid" onBlur="checkAvailability()" placeholder="Emel" required="required">
+                  <input type="email" class="form-control" name="staffemail" id="staffemail" onBlur="checkAvailability()" placeholder="Emel" required="required">
                    <span id="user-availability-status" style="font-size:12px;"></span> 
                 </div>
                 <div class="form-group">

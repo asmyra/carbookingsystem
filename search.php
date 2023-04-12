@@ -78,8 +78,7 @@ error_reporting(0);
 <?php 
 //Query for Listing count
 $searchdata=$_POST['searchdata'];
-$sql = "SELECT tblvehicles.id from tblvehicles 
-join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand 
+$sql = "SELECT vehicles.vehicleid from vehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand 
 where tblvehicles.VehiclesTitle=:search || tblvehicles.FuelType=:search || tblbrands.BrandName=:search || tblvehicles.ModelYear=:search";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':search',$searchdata, PDO::PARAM_STR);
@@ -92,7 +91,7 @@ $cnt=$query->rowCount();
 </div>
 
 <?php 
-$sql = "SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid  from tblvehicles 
+$sql = "SELECT vehicles.*,tblbrands.BrandName,tblbrands.id as bid  from vehicles 
 join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand 
 where tblvehicles.VehiclesTitle=:search || tblvehicles.FuelType=:search || tblbrands.BrandName=:search || tblvehicles.ModelYear=:search";
 $query = $dbh -> prepare($sql);

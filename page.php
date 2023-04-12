@@ -31,7 +31,7 @@ include('includes/config.php');
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
 		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
-        
+      
 <!-- Fav and touch icons -->
 <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
@@ -44,7 +44,6 @@ include('includes/config.php');
 <<!-- Start Switcher -->
 <?php include('includes/colorswitcher.php');?>
 <!-- /Switcher -->  
-        
 <!--Header-->
 <?php include('includes/header.php');?>
                       <?php 
@@ -77,8 +76,6 @@ foreach($results as $result)
 <section class="about_us section-padding">
   <div class="container">
     <div class="section-header text-center">
-
-
       <h2><?php   echo htmlentities($result->PageName); ?></h2>
       <p><?php  echo $result->detail; ?> </p>
     </div>
@@ -86,32 +83,21 @@ foreach($results as $result)
   </div>
 </section>
 <!-- /About-us--> 
-
-
-
-
-
 <<!--Footer -->
 <?php include('includes/footer.php');?>
 <!-- /Footer--> 
-
 <!--Back to top-->
 <div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
 <!--/Back to top--> 
-
 <!--Login-Form -->
 <?php include('includes/login.php');?>
 <!--/Login-Form --> 
-
 <!--Register-Form -->
 <?php include('includes/registration.php');?>
-
 <!--/Register-Form --> 
-
 <!--Forgot-password-Form -->
 <?php include('includes/forgotpassword.php');?>
 <!--/Forgot-password-Form --> 
-
 <!-- Scripts --> 
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/bootstrap.min.js"></script> 
@@ -123,8 +109,6 @@ foreach($results as $result)
 <!--Slider-JS--> 
 <script src="assets/js/slick.min.js"></script> 
 <script src="assets/js/owl.carousel.min.js"></script>
-
 </body>
-
 <!-- Mirrored from themes.webmasterdriver.net/carforyou/demo/about-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 07:26:12 GMT -->
 </html>

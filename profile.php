@@ -11,12 +11,12 @@ if(isset($_POST['updateprofile']))
   {
 $name=$_POST['fullname'];
 $email=$_SESSION['login'];
-$sql="update tblusers set FullName=:name,ContactNo=:mobileno,dob=:dob,Address=:adress,City=:city,Country=:country where EmailId=:email";
+$sql="update staff set FullName=:name,ContactNo=:mobileno,dob=:dob,Address=:adress,City=:city,Country=:country where EmailId=:email";
 $query = $dbh->prepare($sql);
 $query->bindParam(':name',$name,PDO::PARAM_STR);
 $query->bindParam(':email',$email,PDO::PARAM_STR);
 $query->execute();
-$msg="Profile Updated Successfully";
+$msg="Profil berjaya dikemaskini";
 }
 
 ?>
@@ -54,7 +54,8 @@ $msg="Profile Updated Successfully";
 <link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png">
 <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
  <style>
-    .errorWrap {
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -62,7 +63,8 @@ $msg="Profile Updated Successfully";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -102,7 +104,7 @@ $msg="Profile Updated Successfully";
 
 <?php 
 $useremail=$_SESSION['login'];
-$sql = "SELECT * from tblusers where EmailId=:staff_email";
+$sql = "SELECT * from staff where staffemail=:staff_email";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':staff_email',$useremail, PDO::PARAM_STR);
 $query->execute();

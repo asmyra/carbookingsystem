@@ -81,7 +81,7 @@ else{
 
 <?php 
 $useremail=$_SESSION['login'];
-$sql = "SELECT * from tblusers where EmailId=:useremail ";
+$sql = "SELECT * from staff where staffemail=:useremail ";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':useremail',$useremail, PDO::PARAM_STR);
 $query->execute();
@@ -106,7 +106,6 @@ foreach($results as $result)
     <div class="row">
       <div class="col-md-3 col-sm-3">
        <?php include('includes/sidebar.php');?>
-   
       <div class="col-md-8 col-sm-8">
         <div class="profile_wrap">
           <h5 class="uppercase underline">Tempahan Saya </h5>
@@ -136,46 +135,42 @@ foreach($results as $result)
                 </div>
                 <div style="float: left"><p><b>Destinasi:</b> <?php echo htmlentities($result->destination);?> </p></div>
                 </div>
-                <?php if($result->Status==1)
+                <?php 
+                if($result->Status==1)
                 { ?>
                 <div class="vehicle_status"> <a href="#" class="btn outline btn-xs active-btn">Disahkan</a>
                            <div class="clearfix"></div>
         </div>
-
-              <?php } else if($result->Status==2) { ?>
+              <?php } 
+              else if($result->Status==2) { ?>
  <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Dibatalkan</a>
             <div class="clearfix"></div>
         </div>
-             
-
-
-                <?php } else { ?>
+                <?php } 
+                else { ?>
  <div class="vehicle_status"> <a href="#" class="btn outline btn-xs">Belum disahkan</a>
             <div class="clearfix"></div>
         </div>
                 <?php } ?>
-       
               </li>
 
 <h5 style="color:blue">Invoice</h5>
 <table>
   <tr>
-    <th>Nombor kereta</th>
-    <th>Tarikh mula</th>
-    <th>Tarikh akhir</th>
+    <th>Nombor plat kereta</th>
+    <th>Tarikh</th>
+    <th>Masa</th>
   </tr>
   <tr>
-    <td><?php echo htmlentities($result->vehicles_number);?></td>
-     <td><?php echo htmlentities($result->fromdate);?></td>
-      <td><?php echo htmlentities($result->todate);?></td>
+    <td><?php echo htmlentities($result->vehiclesnumber);?></td>
+     <td><?php echo htmlentities($result->date);?></td>
+      <td><?php echo htmlentities($result->tIME);?></td>
   </tr>
 </table>
 <hr />
               <?php }}  else { ?>
                 <h5 align="center" style="color:red">Belum ada tempahan</h5>
               <?php } ?>
-             
-         
             </ul>
           </div>
         </div>

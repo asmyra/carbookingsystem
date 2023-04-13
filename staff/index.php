@@ -2,9 +2,7 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
-
 ?>
-
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -79,7 +77,7 @@ error_reporting(0);
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-<?php $sql = "SELECT * FROM 'vehicles';";
+<?php $sql = "SELECT * FROM vehicles";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);

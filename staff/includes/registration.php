@@ -3,12 +3,16 @@
 if(isset($_POST['signup']))
 {
 $fname=$_POST['fullname'];
+$department=$_POST['department'];
+$position=$_POST['position'];
 $email=$_POST['staffemail'];
 $password=md5($_POST['password']); 
-$sql="INSERT INTO staff(FullName,staffemail,Password) VALUES(:fullname,:staffemail,:password)";
+$sql="INSERT INTO staff(fullname,staffemail,department,position,Password) VALUES(:fullname,:staffemail,:department,:position,:password)";
 $query = $dbh->prepare($sql);
 $query->bindParam(':fullname',$fname,PDO::PARAM_STR);
 $query->bindParam(':staffemail',$email,PDO::PARAM_STR);
+$query->bindParam(':department',$department,PDO::PARAM_STR);
+$query->bindParam(':position',$position,PDO::PARAM_STR);
 $query->bindParam(':password',$password,PDO::PARAM_STR);
 $query->execute();
 $lastInsertId = $dbh->lastInsertId();
@@ -54,6 +58,12 @@ error:function (){}
               <form  method="post" name="signup" onSubmit="return valid();">
                 <div class="form-group">
                   <input type="text" class="form-control" name="fullname" placeholder="Nama penuh" required="required">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="department" placeholder="Jabatan/Unit" required="required">
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" name="position" placeholder="Jawatan" required="required">
                 </div>
                 <div class="form-group">
                   <input type="email" class="form-control" name="staffemail" id="staffemail" onBlur="checkAvailability()" placeholder="Emel" required="required">

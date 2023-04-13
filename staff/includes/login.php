@@ -3,7 +3,7 @@ if(isset($_POST['login']))
 {
 $email=$_POST['email'];
 $password=md5($_POST['password']);
-$sql ="SELECT EmailId,Password,FullName FROM tblusers WHERE EmailId=:email and Password=:password";
+$sql ="SELECT staffemail,Password,fullname FROM staff WHERE staffemail=:email and Password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
@@ -12,7 +12,7 @@ $results=$query->fetchAll(PDO::FETCH_OBJ);
 if($query->rowCount() > 0)
 {
 $_SESSION['login']=$_POST['email'];
-$_SESSION['fname']=$results->FullName;
+$_SESSION['fname']=$results->fullname;
 $currentpage=$_SERVER['REQUEST_URI'];
 echo "<script type='text/javascript'> document.location = '$currentpage'; </script>";
 } else{
@@ -38,7 +38,7 @@ echo "<script type='text/javascript'> document.location = '$currentpage'; </scri
             <div class="col-md-12 col-sm-6">
               <form method="post">
                 <div class="form-group">
-                  <input type="email" class="form-control" name="email" placeholder="Emel*">
+                  <input type="email" class="form-control" name="staffemail" placeholder="Emel*">
                 </div>
                 <div class="form-group">
                   <input type="password" class="form-control" name="password" placeholder="Kata laluan*">

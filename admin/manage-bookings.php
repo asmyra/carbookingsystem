@@ -3,15 +3,16 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
+{	
+	header('location:index.php');
 }
-else{
-if(isset($_REQUEST['eid']))
+else
+{
+	if(isset($_REQUEST['eid']))
 	{
 $eid=intval($_GET['eid']);
 $status="2";
-$sql = "UPDATE booking SET Status=:status WHERE  id=:eid";
+$sql = "UPDATE booking SET Status=:status WHERE bookingid=:eid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':eid',$eid, PDO::PARAM_STR);
@@ -19,14 +20,12 @@ $query -> execute();
 
 $msg="Tempahan Berjaya Dibatalkan";
 }
-
-
 if(isset($_REQUEST['aeid']))
 	{
 $aeid=intval($_GET['aeid']);
 $status=1;
 
-$sql = "UPDATE booking SET Status=:status WHERE  id=:aeid";
+$sql = "UPDATE booking SET Status=:status WHERE bookingid=:aeid";
 $query = $dbh->prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
@@ -144,7 +143,7 @@ foreach($results as $result)
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
 											<td><?php echo htmlentities($result->FullName);?></td>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>"><?php echo htmlentities($result->VehiclesTitle);?></td>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>"><?php echo htmlentities($result->vehiclename);?></td>
 											<td><?php echo htmlentities($result->Date);?></td>
 											<td><?php echo htmlentities($result->Time);?></td>
 											<td><?php 
@@ -158,10 +157,10 @@ echo htmlentities('Confirmed');
  	echo htmlentities('Cancelled');
  }
 										?></td>
-										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')"> Confirm</a> /
+										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sahkan tempahan?')"> Confirm</a> /
 
 
-<a href="manage-bookings.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')"> Cancel</a>
+<a href="manage-bookings.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Batalkan tempahan?')"> Cancel</a>
 </td>
 
 										</tr>

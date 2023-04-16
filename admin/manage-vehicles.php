@@ -11,7 +11,7 @@ else
 if(isset($_REQUEST['del']))
 	{
 		$delid=intval($_GET['del']);
-		$sql = "delete from vehicles  WHERE  id=:delid";
+		$sql = "delete from vehicles WHERE vehicleid=:delid";
 		$query = $dbh->prepare($sql);
 		$query -> bindParam(':delid',$delid, PDO::PARAM_STR);
 		$query -> execute();
@@ -94,7 +94,7 @@ if(isset($_REQUEST['del']))
 									<tr>
 										<th>#</th>
 										<th>Nama Kenderaan</th>
-										<th>Tahun Model</th>
+										<th>Nombor Plat Kenderaan</th>
 										<th>Tindakan</th>
 									</tr>
 								</thead>
@@ -102,12 +102,12 @@ if(isset($_REQUEST['del']))
 									<tr>
 										<th>#</th>
 										<th>Nama Kenderaan</th>
-										<th>Tahun Model</th>
+										<th>Nombor Plat Kenderaan</th>
 										<th>Tindakan</th>
 									</tr>
 									</tfoot>
 									<tbody>
-<?php $sql = "SELECT vehicles.vehicles_number,vehicles.vehicles_year from vehicles ";
+<?php $sql = "SELECT vehicles.vehiclename,vehicles.vehiclenumber from vehicles ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -118,11 +118,11 @@ foreach($results as $result)
 {?>	
 <tr>
 	<td><?php echo htmlentities($cnt);?></td>
-	<td><?php echo htmlentities($result->vehicles_number);?></td>
-	<td><?php echo htmlentities($result->vehicles_year);?></td>
+	<td><?php echo htmlentities($result->vehiclename);?></td>
+	<td><?php echo htmlentities($result->vehiclenumber);?></td>
 	<td>
-		<a href="edit-vehicle.php?id=<?php echo $result->id;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
-		<a href="manage-vehicles.php?del=<?php echo $result->id;?>" onclick="return Pengesahan('Adakah anda mahu padam kenderaan');"><i class="fa fa-close"></i></a>
+		<a href="edit-vehicle.php?id=<?php echo $result->vehicleid;?>"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;
+		<a href="manage-vehicles.php?del=<?php echo $result->vehicleid;?>" onclick="return Pengesahan('Adakah anda mahu padam kenderaan');"><i class="fa fa-close"></i></a>
 	</td>
 </tr>
 										<?php $cnt=$cnt+1; }} ?>

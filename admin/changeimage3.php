@@ -37,7 +37,7 @@ $msg="Image updated successfully";
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>Car Rental Portal | Admin Update Image 3</title>
+	<title>MDKT Car Booking System |  Kemas kini Imej 3</title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
@@ -84,23 +84,23 @@ $msg="Image updated successfully";
 			<div class="container-fluid">
 				<div class="row">
 					<div class="col-md-12">
-						<h2 class="page-title">Vehicle Image 3 </h2>
+						<h2 class="page-title">Imej 3 </h2>
 						<div class="row">
 							<div class="col-md-10">
 								<div class="panel panel-default">
-									<div class="panel-heading">Vehicle Image 3 Details</div>
+									<div class="panel-heading">Imej 3</div>
 									<div class="panel-body">
 										<form method="post" class="form-horizontal" enctype="multipart/form-data">					
-  	        	  <?php if($error){?><div class="errorWrap"><strong>ERROR</strong>:<?php echo htmlentities($error); ?> </div><?php } 
-				else if($msg){?><div class="succWrap"><strong>SUCCESS</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
+  	        	  <?php if($error){?><div class="errorWrap"><strong>TIDAK BERJAYA</strong>:<?php echo htmlentities($error); ?> </div><?php } 
+				else if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php }?>
 
 
 
 <div class="form-group">
-<label class="col-sm-4 control-label">Current Image3</label>
+<label class="col-sm-4 control-label">Imej 3 terkini</label>
 <?php 
 $id=intval($_GET['imgid']);
-$sql ="SELECT Vimage3 from vehicles where vehicles.id=:id";
+$sql ="SELECT Vimage3 from vehicles where vehicles.vehicleid=:id";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':id', $id, PDO::PARAM_STR);
 $query->execute();
@@ -117,7 +117,7 @@ foreach($results as $result)
 </div>
 
 											<div class="form-group">
-												<label class="col-sm-4 control-label">Upload New Image 3<span style="color:red">*</span></label>
+												<label class="col-sm-4 control-label">Muat naik Imej 3 baharu<span style="color:red">*</span></label>
 												<div class="col-sm-8">
 											<input type="file" name="img3" required>
 												</div>
@@ -125,7 +125,7 @@ foreach($results as $result)
 											<div class="hr-dashed"></div>
 											<div class="form-group">
 												<div class="col-sm-8 col-sm-offset-4">
-													<button class="btn btn-primary" name="update" type="submit">Update</button>
+													<button class="btn btn-primary" name="update" type="submit">Kemas kini</button>
 												</div>
 											</div>
 										</form>

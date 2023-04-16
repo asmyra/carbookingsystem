@@ -10,7 +10,7 @@ else{
 
 if(isset($_POST['submit']))
   {
-$modelyear=$_POST['vehicles_year'];
+$vehicleyear=$_POST['vehicleyear'];
 $seatingcapacity=$_POST['seatingcapacity'];
 $airconditioner=$_POST['airconditioner'];
 $powerdoorlocks=$_POST['powerdoorlocks'];
@@ -24,11 +24,11 @@ $cdplayer=$_POST['cdplayer'];
 $centrallocking=$_POST['centrallocking'];
 $crashcensor=$_POST['crashcensor'];
 $leatherseats=$_POST['leatherseats'];
-$vehicles_number=intval($_GET['vehicles_number']);
+$vehicleid=intval($_GET['vehicleid']);
 
-$sql="update vehicles set vehicles_year=:vehicles_year,seating_capacity=:seating_capacity,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where vehicles_number=:vehicles_number";
+$sql="update vehicles set vehicleyear=:vehicleyear,seatingcapacity=:seatingcapacity,AirConditioner=:airconditioner,PowerDoorLocks=:powerdoorlocks,AntiLockBrakingSystem=:antilockbrakingsys,BrakeAssist=:brakeassist,PowerSteering=:powersteering,DriverAirbag=:driverairbag,PassengerAirbag=:passengerairbag,PowerWindows=:powerwindow,CDPlayer=:cdplayer,CentralLocking=:centrallocking,CrashSensor=:crashcensor,LeatherSeats=:leatherseats where vehicleid=:vehicleid";
 $query = $dbh->prepare($sql);
-$query->bindParam(':vehicles_year',$modelyear,PDO::PARAM_STR);
+$query->bindParam(':vehicleyear',$modelyear,PDO::PARAM_STR);
 $query->bindParam(':seatingcapacity',$seatingcapacity,PDO::PARAM_STR);
 $query->bindParam(':airconditioner',$airconditioner,PDO::PARAM_STR);
 $query->bindParam(':powerdoorlocks',$powerdoorlocks,PDO::PARAM_STR);
@@ -42,7 +42,7 @@ $query->bindParam(':cdplayer',$cdplayer,PDO::PARAM_STR);
 $query->bindParam(':centrallocking',$centrallocking,PDO::PARAM_STR);
 $query->bindParam(':crashcensor',$crashcensor,PDO::PARAM_STR);
 $query->bindParam(':leatherseats',$leatherseats,PDO::PARAM_STR);
-$query->bindParam(':vehicles_number',$id,PDO::PARAM_STR);
+$query->bindParam(':vehicleid',$id,PDO::PARAM_STR);
 $query->execute();
 
 $msg="Data telah dikemas kini";
@@ -119,7 +119,7 @@ $msg="Data telah dikemas kini";
 <?php if($msg){?><div class="succWrap"><strong>BERJAYA</strong>:<?php echo htmlentities($msg); ?> </div><?php } ?>
 <?php 
 $id=intval($_GET['id']);
-$sql ="SELECT tblvehicles.*,tblbrands.BrandName,tblbrands.id as bid from tblvehicles join tblbrands on tblbrands.id=tblvehicles.VehiclesBrand where tblvehicles.id=:id";
+$sql ="SELECT * FROM vehicles WHERE vehicleid =:id";
 $query = $dbh -> prepare($sql);
 $query-> bindParam(':id', $id, PDO::PARAM_STR);
 $query->execute();
@@ -132,103 +132,77 @@ foreach($results as $result)
 
 <form method="post" class="form-horizontal" enctype="multipart/form-data">
 <div class="form-group">
-<label class="col-sm-2 control-label">Vehicle Title<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Nombor Plat Kenderaan<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="vehicletitle" class="form-control" value="<?php echo htmlentities($result->VehiclesTitle)?>" required>
+<input type="text" name="vehiclenumber" class="form-control" value="<?php echo htmlentities($result->vehiclenumber)?>" required>
 </div>
-<label class="col-sm-2 control-label">Select Brand<span style="color:red">*</span></label>
-<div class="col-sm-4">
-<select class="selectpicker" name="brandname" required>
-<option value="<?php echo htmlentities($result->bid);?>"><?php echo htmlentities($bdname=$result->BrandName); ?> </option>
-<?php $ret="select id,BrandName from tblbrands";
-$query= $dbh -> prepare($ret);
-//$query->bindParam(':id',$id, PDO::PARAM_STR);
-$query-> execute();
-$resultss = $query -> fetchAll(PDO::FETCH_OBJ);
-if($query -> rowCount() > 0)
-{
-foreach($resultss as $results)
-{
-if($results->BrandName==$bdname)
-{
-continue;
-} else{
-?>
-<option value="<?php echo htmlentities($results->id);?>"><?php echo htmlentities($results->BrandName);?></option>
-<?php }}} ?>
-
-</select>
-</div>
-</div>
-											
+</div>										
 <div class="hr-dashed"></div>
 <div class="form-group">
-<label class="col-sm-2 control-label">Vehical Overview<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Nama Kenderaan<span style="color:red">*</span></label>
 <div class="col-sm-10">
-<textarea class="form-control" name="vehicalorcview" rows="3" required><?php echo htmlentities($result->VehiclesOverview);?></textarea>
+<textarea class="form-control" name="vehiclename" rows="3" required><?php echo htmlentities($result->vehiclesname);?></textarea>
 </div>
 </div>
 
 <div class="form-group">
-<label class="col-sm-2 control-label">Select Fuel Type<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Pilih jenis bahan api<span style="color:red">*</span></label>
 <div class="col-sm-4">
 <select class="selectpicker" name="fueltype" required>
-<option value="<?php echo htmlentities($result->FuelType);?>"> <?php echo htmlentities($result->FuelType);?> </option>
+<option value="<?php echo htmlentities($result->fueltype);?>"> <?php echo htmlentities($result->fueltype);?> </option>
 <option value="Petrol">Petrol</option>
 <option value="Diesel">Diesel</option>
 <option value="CNG">CNG</option>
 </select>
 </div>
 </div>
-
-
 <div class="form-group">
-<label class="col-sm-2 control-label">Model Year<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Tahun<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="modelyear" class="form-control" value="<?php echo htmlentities($result->ModelYear);?>" required>
+<input type="text" name="modelyear" class="form-control" value="<?php echo htmlentities($result->vehicleyear);?>" required>
 </div>
-<label class="col-sm-2 control-label">Seating Capacity<span style="color:red">*</span></label>
+<label class="col-sm-2 control-label">Kapasiti tempat duduk<span style="color:red">*</span></label>
 <div class="col-sm-4">
-<input type="text" name="seatingcapacity" class="form-control" value="<?php echo htmlentities($result->SeatingCapacity);?>" required>
+<input type="text" name="seatingcapacity" class="form-control" value="<?php echo htmlentities($result->seatingcapacity);?>" required>
 </div>
 </div>
 <div class="hr-dashed"></div>								
 <div class="form-group">
 <div class="col-sm-12">
-<h4><b>Vehicle Images</b></h4>
+<h4><b>Gambar Kenderaan</b></h4>
 </div>
 </div>
 
 
 <div class="form-group">
 <div class="col-sm-4">
-Image 1 <img src="img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
-<a href="changeimage1.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 1</a>
+Imej 1 <img src="img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" width="300" height="200" style="border:solid 1px #000">
+<a href="changeimage1.php?imgid=<?php echo htmlentities($result->id)?>">Tukar Imej 1</a>
 </div>
 <div class="col-sm-4">
-Image 2<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage2);?>" width="300" height="200" style="border:solid 1px #000">
-<a href="changeimage2.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 2</a>
+Imej 2<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage2);?>" width="300" height="200" style="border:solid 1px #000">
+<a href="changeimage2.php?imgid=<?php echo htmlentities($result->id)?>">Tukar Imej 2</a>
 </div>
 <div class="col-sm-4">
-Image 3<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage3);?>" width="300" height="200" style="border:solid 1px #000">
-<a href="changeimage3.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 3</a>
+Imej 3<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage3);?>" width="300" height="200" style="border:solid 1px #000">
+<a href="changeimage3.php?imgid=<?php echo htmlentities($result->id)?>">Tukar Imej 3</a>
 </div>
 </div>
 
 
 <div class="form-group">
 <div class="col-sm-4">
-Image 4<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage4);?>" width="300" height="200" style="border:solid 1px #000">
-<a href="changeimage4.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 4</a>
+Imej 4<img src="img/vehicleimages/<?php echo htmlentities($result->Vimage4);?>" width="300" height="200" style="border:solid 1px #000">
+<a href="changeimage4.php?imgid=<?php echo htmlentities($result->id)?>">Tukar Imej 4</a>
 </div>
 <div class="col-sm-4">
-Image 5
+Imej 5
 <?php if($result->Vimage5=="")
 {
 echo htmlentities("File not available");
 } else {?>
 <img src="img/vehicleimages/<?php echo htmlentities($result->Vimage5);?>" width="300" height="200" style="border:solid 1px #000">
-<a href="changeimage5.php?imgid=<?php echo htmlentities($result->id)?>">Change Image 5</a>
+<a href="changeimage5.php?imgid=<?php echo htmlentities($result->id)?>">Tukar Imej 5</a>
 <?php } ?>
 </div>
 
@@ -241,7 +215,7 @@ echo htmlentities("File not available");
 <div class="row">
 <div class="col-md-12">
 <div class="panel panel-default">
-<div class="panel-heading">Accessories</div>
+<div class="panel-heading">Aksesori</div>
 <div class="panel-body">
 <div class="form-group">
 <div class="col-sm-3">
@@ -250,13 +224,13 @@ if($result->AirConditioner==1)
 {?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="airconditioner" checked value="1">
-<label for="inlineCheckbox1"> Air Conditioner </label>
+<label for="inlineCheckbox1"> Pendingin Hawa </label>
 </div>
 <?php } 
 else { ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="airconditioner" value="1">
-<label for="inlineCheckbox1"> Air Conditioner </label>
+<label for="inlineCheckbox1"> Pendingin Hawa </label>
 </div>
 <?php } ?>
 </div>
@@ -266,13 +240,13 @@ if($result->PowerDoorLocks==1)
 {?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="powerdoorlocks" checked value="1">
-<label for="inlineCheckbox2"> Power Door Locks </label>
+<label for="inlineCheckbox2"> Kunci Pintu Kuasa </label>
 </div>
 <?php } 
 else {?>
 <div class="checkbox checkbox-success checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="powerdoorlocks" value="1">
-<label for="inlineCheckbox2"> Power Door Locks </label>
+<label for="inlineCheckbox2"> Kunci Pintu Kuasa </label>
 </div>
 <?php }?>
 </div>
@@ -282,13 +256,13 @@ if($result->AntiLockBrakingSystem==1)
 {?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="antilockbrakingsys" checked value="1">
-<label for="inlineCheckbox3"> AntiLock Braking System </label>
+<label for="inlineCheckbox3"> Sistem Brek AntiKunci </label>
 </div>
 <?php } 
 else {?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="antilockbrakingsys" value="1">
-<label for="inlineCheckbox3"> AntiLock Braking System </label>
+<label for="inlineCheckbox3"> Sistem Brek AntiKunci </label>
 </div>
 <?php } ?>
 </div>
@@ -299,13 +273,13 @@ if($result->BrakeAssist==1)
 ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="brakeassist" checked value="1">
-<label for="inlineCheckbox3"> Brake Assist </label>
+<label for="inlineCheckbox3"> Bantuan Brek </label>
 </div>
 <?php } 
 else {?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="brakeassist" value="1">
-<label for="inlineCheckbox3"> Brake Assist </label>
+<label for="inlineCheckbox3"> Bantuan Brek </label>
 </div>
 <?php } ?>
 </div>
@@ -335,13 +309,13 @@ if($result->DriverAirbag==1)
 ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="driverairbag" checked value="1">
-<label for="inlineCheckbox2">Driver Airbag</label>
+<label for="inlineCheckbox2">Beg Udara Pemandu</label>
 </div>
 <?php } 
 else { ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="driverairbag" value="1">
-<label for="inlineCheckbox2">Driver Airbag</label>
+<label for="inlineCheckbox2">Beg Udara Pemandu</label>
 <?php } ?>
 </div>
 <div class="col-sm-3">
@@ -351,13 +325,13 @@ if($result->DriverAirbag==1)
 ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="passengerairbag" checked value="1">
-<label for="inlineCheckbox3"> Passenger Airbag </label>
+<label for="inlineCheckbox3"> Beg Udara Penumpang </label>
 </div>
 <?php } 
 else { ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="passengerairbag" value="1">
-<label for="inlineCheckbox3"> Passenger Airbag </label>
+<label for="inlineCheckbox3"> Beg Udara Penumpang </label>
 </div>
 <?php } ?>
 </div>
@@ -386,13 +360,13 @@ if($result->CDPlayer==1)
 ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="cdplayer" checked value="1">
-<label for="inlineCheckbox1"> CD Player </label>
+<label for="inlineCheckbox1"> Pemain CD </label>
 </div>
 <?php } 
 else {?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="cdplayer" value="1">
-<label for="inlineCheckbox1"> CD Player </label>
+<label for="inlineCheckbox1"> Pemain CD </label>
 </div>
 <?php } ?>
 </div>
@@ -437,13 +411,13 @@ if($result->CrashSensor==1)
 ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="leatherseats" checked value="1">
-<label for="inlineCheckbox3"> Leather Seats </label>
+<label for="inlineCheckbox3"> Tempat Duduk Kulit </label>
 </div>
 <?php } 
 else { ?>
 <div class="checkbox checkbox-inline">
 <input type="checkbox" id="inlineCheckbox1" name="leatherseats" value="1">
-<label for="inlineCheckbox3"> Leather Seats </label>
+<label for="inlineCheckbox3"> Tempat Duduk Kulit </label>
 </div>
 <?php } ?>
 </div>

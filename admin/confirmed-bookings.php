@@ -98,7 +98,7 @@ else
 									<tbody>
 									<?php 
 $status=1;
-$sql = "SELECT SELECT * FROM `booking` where booking.Status=:status";
+$sql = "SELECT * FROM `booking` WHERE booking.Status=:status";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query->execute();
@@ -112,9 +112,9 @@ foreach($results as $result)
 	<td><?php echo htmlentities($cnt);?></td>
 	<td><?php echo htmlentities($result->fullname);?></td>
 	<td><?php echo htmlentities($result->bookingid);?></td>
-	<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicles_number);?>"></td>
-	<td><?php echo htmlentities($result->Date);?></td>
-	<td><?php echo htmlentities($result->Time);?></td>
+	<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehiclenumber);?>"></td>
+	<td><?php echo htmlentities($result->date);?></td>
+	<td><?php echo htmlentities($result->time);?></td>
 	<td><?php 
 if($result->Status==0)
 {

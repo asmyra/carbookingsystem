@@ -39,7 +39,6 @@ $msg="Tempahan Berjaya Disahkan";
 
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -66,8 +65,9 @@ $msg="Tempahan Berjaya Disahkan";
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
-  <style>
-		.errorWrap {
+<style>
+.errorWrap 
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -75,7 +75,8 @@ $msg="Tempahan Berjaya Disahkan";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-.succWrap{
+.succWrap
+{
     padding: 10px;
     margin: 0 0 20px 0;
     background: #fff;
@@ -83,18 +84,14 @@ $msg="Tempahan Berjaya Disahkan";
     -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
     box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
 }
-		</style>
-
+</style>
 </head>
-
 <body>
 	<?php include('includes/header.php');?>
-
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
 			<div class="container-fluid">
-
 				<div class="row">
 					<div class="col-md-12">
 
@@ -149,13 +146,16 @@ foreach($results as $result)
 											<td><?php 
 if($result->Status==0)
 {
-echo htmlentities('Not Confirmed yet');
-} else if ($result->Status==1) {
-echo htmlentities('Confirmed');
+	echo htmlentities('Not Confirmed yet');
+} 
+else if ($result->Status==1) 
+{
+	echo htmlentities('Confirmed');
 }
- else{
+else
+{
  	echo htmlentities('Cancelled');
- }
+}
 										?></td>
 										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Sahkan tempahan?')"> Confirm</a> /
 

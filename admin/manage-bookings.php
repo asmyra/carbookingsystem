@@ -142,10 +142,10 @@ foreach($results as $result)
 {				?>	
 										<tr>
 											<td><?php echo htmlentities($cnt);?></td>
-											<td><?php echo htmlentities($result->FullName);?></td>
+											<td><?php echo htmlentities($result->fullname);?></td>
 											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>"><?php echo htmlentities($result->vehiclename);?></td>
-											<td><?php echo htmlentities($result->Date);?></td>
-											<td><?php echo htmlentities($result->Time);?></td>
+											<td><?php echo htmlentities($result->date);?></td>
+											<td><?php echo htmlentities($result->time);?></td>
 											<td><?php 
 if($result->Status==0)
 {
@@ -157,10 +157,10 @@ echo htmlentities('Confirmed');
  	echo htmlentities('Cancelled');
  }
 										?></td>
-										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Sahkan tempahan?')"> Confirm</a> /
+										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Sahkan tempahan?')"> Confirm</a> /
 
 
-<a href="manage-bookings.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Batalkan tempahan?')"> Cancel</a>
+<a href="manage-bookings.php?eid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Batalkan tempahan?')"> Cancel</a>
 </td>
 
 										</tr>

@@ -3,44 +3,40 @@ session_start();
 error_reporting(0);
 include('includes/config.php');
 if(strlen($_SESSION['alogin'])==0)
-	{	
-header('location:index.php');
+{	
+	header('location:index.php');
 }
-else{
-if(isset($_REQUEST['eid']))
+else
+{
+	if(isset($_REQUEST['eid']))
 	{
-$eid=intval($_GET['eid']);
-$status="2";
-$sql = "UPDATE booking SET Status=:status WHERE  id=:eid";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':status',$status, PDO::PARAM_STR);
-$query-> bindParam(':eid',$eid, PDO::PARAM_STR);
-$query -> execute();
-  echo "<script>alert('Booking Successfully Cancelled');</script>";
-echo "<script type='text/javascript'> document.location = 'canceled-bookings.php; </script>";
-}
+		$eid=intval($_GET['eid']);
+		$status="2";
+		$sql = "UPDATE booking SET Status=:status WHERE bookingid=:eid";
+		$query = $dbh->prepare($sql);
+		$query -> bindParam(':status',$status, PDO::PARAM_STR);
+		$query-> bindParam(':eid',$eid, PDO::PARAM_STR);
+		$query -> execute();
+		echo "<script>alert('Tempahan berjaya dibatalkan');</script>";
+		echo "<script type='text/javascript'> document.location = 'canceled-bookings.php; </script>";
+	}
 
-
-if(isset($_REQUEST['aeid']))
+	if(isset($_REQUEST['aeid']))
 	{
-$aeid=intval($_GET['aeid']);
-$status=1;
+		$aeid=intval($_GET['aeid']);
+		$status=1;
+		$sql = "UPDATE booking SET Status=:status WHERE  id=:aeid";
+		$query = $dbh->prepare($sql);
+		$query -> bindParam(':status',$status, PDO::PARAM_STR);
+		$query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
+		$query -> execute();
+		echo "<script>alert('Tempahan berjaya disahkan');</script>";
+		echo "<script type='text/javascript'> document.location = 'confirmed-bookings.php'; </script>";
+	}
 
-$sql = "UPDATE booking SET Status=:status WHERE  id=:aeid";
-$query = $dbh->prepare($sql);
-$query -> bindParam(':status',$status, PDO::PARAM_STR);
-$query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
-$query -> execute();
-echo "<script>alert('Booking Successfully Confirmed');</script>";
-echo "<script type='text/javascript'> document.location = 'confirmed-bookings.php'; </script>";
-}
-
-
- ?>
-
+?>
 <!doctype html>
 <html lang="en" class="no-js">
-
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,7 +63,7 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
 	<!-- Admin Stye -->
 	<link rel="stylesheet" href="css/style.css">
-  <style>
+<style>
 .errorWrap 
 {
     padding: 10px;
@@ -90,7 +86,6 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 </head>
 <body>
 	<?php include('includes/header.php');?>
-
 	<div class="ts-main-content">
 		<?php include('includes/leftbar.php');?>
 		<div class="content-wrapper">
@@ -107,7 +102,7 @@ echo "<script type='text/javascript'> document.location = 'confirmed-bookings.ph
 <tbody>
 <?php 
 $bid=intval($_GET['bid']);
-									$sql = "SELECT * FROM `booking` where booking.id=:bid";
+									$sql = "SELECT * FROM `booking` where booking.bookingid=:bid";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
@@ -117,16 +112,16 @@ if($query->rowCount() > 0)
 {
 foreach($results as $result)
 {				?>	
-	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->Bookingid);?> Maklumat Tempahan</h3>
+	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->bookingid);?> Maklumat Tempahan</h3>
 
 		<tr>
 											<th colspan="4" style="text-align:center;color:blue">Maklumat Pengguna</th>
 										</tr>
 										<tr>
 											<th>No. Tempahan</th>
-											<td>#<?php echo htmlentities($result->BookingNumber);?></td>
+											<td>#<?php echo htmlentities($result->bookingid);?></td>
 											<th>Nama</th>
-											<td><?php echo htmlentities($result->FullName);?></td>
+											<td><?php echo htmlentities($result->fullname);?></td>
 										</tr>
 										<tr>											
 											<th>Jabatan/Unit</th>
@@ -136,14 +131,12 @@ foreach($results as $result)
 											<th>Jawatan</th>
 											<td><?php echo htmlentities($result->position);?></td>
 										</tr>
-											
-
 										<tr>
 											<th colspan="4" style="text-align:center;color:blue">Maklumat Tempahan</th>
 										</tr>
 											<tr>											
 											<th>Nombor Kenderaan</th>
-											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vid);?>">,<?php echo htmlentities($result->VehiclesNumber);?></td>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>">,<?php echo htmlentities($result->vehiclenumber);?></td>
 										</tr>
 										<tr>
 											<th>Tarikh</th>
@@ -174,8 +167,8 @@ else
 {?>
 <tr>	
 <td style="text-align:center" colspan="4">
-		<a href="booking-details.php?aeid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Confirm this booking')" class="btn btn-primary"> Sahkan tempahan</a>
-		<a href="booking-details.php?eid=<?php echo htmlentities($result->id);?>" onclick="return confirm('Do you really want to Cancel this Booking')" class="btn btn-danger"> Batalkan tempahan</a>
+		<a href="booking-details.php?aeid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Anda mahu sahkan tempahan?')" class="btn btn-primary"> Sahkan tempahan</a>
+		<a href="booking-details.php?eid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Anda mahu batalkan tempahan?')" class="btn btn-danger"> Batalkan tempahan</a>
 </td>
 </tr>
 <?php } ?>

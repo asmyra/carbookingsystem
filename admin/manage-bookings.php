@@ -157,10 +157,10 @@ else
  	echo htmlentities('Cancelled');
 }
 										?></td>
-										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Sahkan tempahan?')"> Confirm</a> /
+										<td><a href="manage-bookings.php?aeid=<?php echo htmlentities($result->bookingid);?>" onclick="return confirm('Sahkan tempahan?')"> Confirm</a> /
 
 
-<a href="manage-bookings.php?eid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Batalkan tempahan?')"> Cancel</a>
+<a href="manage-bookings.php?eid=<?php echo htmlentities($result->bookingid);?>" onclick="return confirm('Batalkan tempahan?')"> Cancel</a>
 </td>
 
 										</tr>

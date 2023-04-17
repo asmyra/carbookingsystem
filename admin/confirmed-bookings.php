@@ -128,7 +128,7 @@ echo htmlentities('Confirmed');
 ?>
 </td>
 <td>
-<a href="booking-details.php?bid=<?php echo htmlentities($result->id);?>">Lihat</a>
+<a href="booking-details.php?bid=<?php echo htmlentities($result->bookingid);?>">Lihat</a>
 </td>
 </tr>
 										<?php $cnt=$cnt+1;}}?>

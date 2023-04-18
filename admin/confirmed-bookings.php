@@ -98,7 +98,10 @@ else
 									<tbody>
 									<?php 
 $status=1;
-$sql = "SELECT * FROM `booking` WHERE booking.Status=:status";
+$sql = "SELECT staff.position, staff.department, staff.full_name, booking.bookingid, booking.vehicleid, booking.date, booking.time, booking.vehiclenumber, booking.location
+FROM booking
+JOIN staff ON booking.staffid = staff.staffid
+WHERE booking.status = :status;";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':status',$status, PDO::PARAM_STR);
 $query->execute();

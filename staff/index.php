@@ -77,7 +77,7 @@ error_reporting(0);
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="resentnewcar">
 
-<?php $sql = "SELECT * FROM vehicles";
+<?php $sql = "SELECT vehiclename, fueltype, vehicleyear, vehicleid, seatingcapacity, vehiclenumber, Vimage1 FROM vehicles LIMIT 9; ";
 $query = $dbh -> prepare($sql);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
@@ -93,7 +93,7 @@ foreach($results as $result)
 <div class="car-info-box"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->vehicleid);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image"></a>
 <ul>
 <li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->fueltype);?></li>
-<li><i class="fa fa-calendar" aria-hidden="true">Model</i><?php echo htmlentities($result->vehicleyaer);?></li>
+<li><i class="fa fa-calendar" aria-hidden="true">Model</i><?php echo htmlentities($result->vehicleyear);?></li>
 <li><i class="fa fa-user" aria-hidden="true">Tempat duduk</i><?php echo htmlentities($result->seatingcapacity);?></li>
 </ul>
 </div>

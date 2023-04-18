@@ -102,7 +102,10 @@ else
 <tbody>
 <?php 
 $bid=intval($_GET['bid']);
-									$sql = "SELECT * FROM `booking` where booking.bookingid=:bid";
+$sql = "SELECT staff.position, staff.department, staff.full_name, booking.bookingid, booking.vehicleid, booking.date, booking.time, booking.vehiclenumber, booking.location
+		FROM booking
+		JOIN staff ON booking.staffid = staff.staffid
+		WHERE booking.bookingid = :bid;";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
@@ -143,6 +146,8 @@ foreach($results as $result)
 											<td><?php echo htmlentities($result->date);?></td>
 											<th>Masa</th>
 											<td><?php echo htmlentities($result->time);?></td>
+											<th>Lokasi</th>
+											<td><?php echo htmlentities($result->location);?></td>
 										</tr>
 <tr>
 <th>Status Tempahan</th>

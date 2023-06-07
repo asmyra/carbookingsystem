@@ -1,190 +1,213 @@
-<?php 
+<?php
 session_start();
-include('includes/config.php');
 error_reporting(0);
-?>
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
+include('includes/config.php');
+if(strlen($_SESSION['alogin'])==0)
+{	
+	header('location:index.php');
+}
+else
+{
+	if(isset($_REQUEST['eid']))
+	{
+		$eid=intval($_GET['eid']);
+		$status="2";
+		$sql = "UPDATE booking SET Status=:status WHERE bookingid=:eid";
+		$query = $dbh->prepare($sql);
+		$query -> bindParam(':status',$status, PDO::PARAM_STR);
+		$query-> bindParam(':eid',$eid, PDO::PARAM_STR);
+		$query -> execute();
+		echo "<script>alert('Tempahan berjaya dibatalkan');</script>";
+		echo "<script type='text/javascript'> document.location = 'canceled-bookings.php; </script>";
+	}
 
-<title>MDKT Car Booking System</title>
-<!--Bootstrap -->
-<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
-<link rel="stylesheet" href="assets/css/style.css" type="text/css">
-<link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
-<link rel="stylesheet" href="assets/css/owl.transitions.css" type="text/css">
-<link href="assets/css/slick.css" rel="stylesheet">
-<link href="assets/css/bootstrap-slider.min.css" rel="stylesheet">
-<link href="assets/css/font-awesome.min.css" rel="stylesheet">
-		<link rel="stylesheet" id="switcher-css" type="text/css" href="assets/switcher/css/switcher.css" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/red.css" title="red" media="all" data-default-color="true" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/orange.css" title="orange" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/blue.css" title="blue" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/pink.css" title="pink" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/green.css" title="green" media="all" />
-		<link rel="alternate stylesheet" type="text/css" href="assets/switcher/css/purple.css" title="purple" media="all" />
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/images/favicon-icon/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/images/favicon-icon/apple-touch-icon-114-precomposed.html">
-<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/images/favicon-icon/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed" href="assets/images/favicon-icon/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon" href="assets/images/favicon-icon/favicon.png">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet"> 
+	if(isset($_REQUEST['aeid']))
+	{
+		$aeid=intval($_GET['aeid']);
+		$status=1;
+		$sql = "UPDATE booking SET Status=:status WHERE  id=:aeid";
+		$query = $dbh->prepare($sql);
+		$query -> bindParam(':status',$status, PDO::PARAM_STR);
+		$query-> bindParam(':aeid',$aeid, PDO::PARAM_STR);
+		$query -> execute();
+		echo "<script>alert('Tempahan berjaya disahkan');</script>";
+		echo "<script type='text/javascript'> document.location = 'confirmed-bookings.php'; </script>";
+	}
+
+?>
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<meta name="theme-color" content="#3e454c">
+	
+	<title>MDKT Car Booking System | Tempahan Baharu  </title>
+
+	<!-- Font awesome -->
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<!-- Sandstone Bootstrap CSS -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Bootstrap Datatables -->
+	<link rel="stylesheet" href="css/dataTables.bootstrap.min.css">
+	<!-- Bootstrap social button library -->
+	<link rel="stylesheet" href="css/bootstrap-social.css">
+	<!-- Bootstrap select -->
+	<link rel="stylesheet" href="css/bootstrap-select.css">
+	<!-- Bootstrap file input -->
+	<link rel="stylesheet" href="css/fileinput.min.css">
+	<!-- Awesome Bootstrap checkbox -->
+	<link rel="stylesheet" href="css/awesome-bootstrap-checkbox.css">
+	<!-- Admin Stye -->
+	<link rel="stylesheet" href="css/style.css">
+<style>
+.errorWrap 
+{
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #dd3d36;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+.succWrap
+{
+    padding: 10px;
+    margin: 0 0 20px 0;
+    background: #fff;
+    border-left: 4px solid #5cb85c;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.1);
+}
+</style>
 </head>
 <body>
-
-<!-- Start Switcher -->
-<?php include('includes/colorswitcher.php');?>
-<!-- /Switcher -->  
-        
-<!--Header-->
-<?php include('includes/header.php');?>
-<!-- /Header --> 
-
-<!-- Banners -->
-<section id="banner" class="banner-section">
-  <div class="container">
-    <div class="div_zindex">
-      <div class="row">
-        <div class="col-md-5 col-md-push-7">
-          <div class="banner_content">
-            <h1>&nbsp;</h1>
-            <p>&nbsp; </p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /Banners --> 
-
-
-<!-- Resent Cat-->
-<section class="section-padding gray-bg">
-  <div class="container">
-    <div class="section-header text-center">
-      <h2>Find the Best <span>CarForYou</span></h2>
-      <p>You've found SuCaRS, a community where people are rethinking the future of transportation by renting their cars together. Find convenient mobility by renting a car by the hour, day, week, or month on theSuCaRS website. Our goal is to make mobility more accessible so that fewer people will need to own cars, and to have an effect on creating a greener society across the country and abroad.</p>
-    </div>
-    <div class="row"> 
-      
-      <!-- Nav tabs -->
-      <div class="recent-tab">
-        <ul class="nav nav-tabs" role="tablist">
-          <li role="presentation" class="active"><a href="#resentnewcar" role="tab" data-toggle="tab">Kenderaan baharu</a></li>
-        </ul>
-      </div>
-      <!-- Recently Listed New Cars -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="resentnewcar">
-
-<?php $sql = "SELECT vehiclename, fueltype, vehicleyear, vehicleid, seatingcapacity, vehiclenumber, Vimage1 FROM vehicles LIMIT 9; ";
+	<?php include('includes/header.php');?>
+	<div class="ts-main-content">
+		<?php include('includes/leftbar.php');?>
+		<div class="content-wrapper">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<h2 class="page-title">Maklumat Tempahan</h2>
+						<!-- Zero Configuration Table -->
+						<div class="panel panel-default">
+							<div class="panel-heading">Maklumat Permohonan</div>
+							<div class="panel-body">
+<div id="print">
+								<table border="1"  class="display table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+<tbody>
+<?php 
+$bid=intval($_GET['bid']);
+$sql = "SELECT staff.position, staff.department, staff.full_name, booking.bookingid, booking.vehicleid, booking.date, booking.time, booking.vehiclenumber, booking.location
+		FROM booking
+		JOIN staff ON booking.staffid = staff.staffid
+		WHERE booking.bookingid = :bid;";
 $query = $dbh -> prepare($sql);
+$query -> bindParam(':bid',$bid, PDO::PARAM_STR);
 $query->execute();
 $results=$query->fetchAll(PDO::FETCH_OBJ);
 $cnt=1;
 if($query->rowCount() > 0)
 {
 foreach($results as $result)
-{  
-?>  
+{				?>	
+	<h3 style="text-align:center; color:red">#<?php echo htmlentities($result->bookingid);?> Maklumat Tempahan</h3>
 
-<div class="col-list-3">
-<div class="recent-car-list">
-<div class="car-info-box"> <a href="vehical-details.php?vhid=<?php echo htmlentities($result->vehicleid);?>"><img src="admin/img/vehicleimages/<?php echo htmlentities($result->Vimage1);?>" class="img-responsive" alt="image"></a>
-<ul>
-<li><i class="fa fa-car" aria-hidden="true"></i><?php echo htmlentities($result->fueltype);?></li>
-<li><i class="fa fa-calendar" aria-hidden="true">Model</i><?php echo htmlentities($result->vehicleyear);?></li>
-<li><i class="fa fa-user" aria-hidden="true">Tempat duduk</i><?php echo htmlentities($result->seatingcapacity);?></li>
-</ul>
-</div>
-<div class="car-title-m">
-<h6><a href="vehical-details.php?vhid=<?php echo htmlentities($result->vehicleid);?>"> <?php echo htmlentities($result->vehiclename);?></a></h6>
-</div>
-</div>
-</div>
-<?php }}?>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- /Resent Cat --> 
-
-<!-- Fun Facts-->
-<section class="fun-facts-section">
-  <div class="container div_zindex">
-    <div class="row">
-      <div class="col-lg-3 col-xs-6 col-sm-3">
-        <div class="fun-facts-m">
-          <div class="cell">
-            <h2><i class="fa fa-calendar" aria-hidden="true"></i>Step 1</h2>
-            <p>Fill up the form</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-6 col-sm-3">
-        <div class="fun-facts-m">
-          <div class="cell">
-            <h2><i class="fa fa-car" aria-hidden="true"></i>Step 2</h2>
-            <p>Pick a Date & Vehicle</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-6 col-sm-3">
-        <div class="fun-facts-m">
-          <div class="cell">
-            <h2><i class="fa fa-car" aria-hidden="true"></i>Step 3</h2>
-            <p>Send in your booking application</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-6 col-sm-3">
-        <div class="fun-facts-m">
-          <div class="cell">
-            <h2><i class="fa fa-user-circle-o" aria-hidden="true"></i>Step 4</h2>
-            <p>Wait for approval!</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- Dark Overlay-->
-  <div class="dark-overlay"></div>
-</section>
-<!-- /Fun Facts--> 
-
-<!--Footer -->
-<?php include('includes/footer.php');?>
-<!-- /Footer--> 
-
-<!--Back to top-->
-<div id="back-top" class="back-top"> <a href="#top"><i class="fa fa-angle-up" aria-hidden="true"></i> </a> </div>
-<!--/Back to top--> 
-
-<!--Login-Form -->
-<?php include('includes/login.php');?>
-<!--/Login-Form --> 
-
-<!--Register-Form -->
-<?php include('includes/registration.php');?>
-
-<!--/Register-Form --> 
-
-<!--Forgot-password-Form -->
-<?php include('includes/forgotpassword.php');?>
-<!--/Forgot-password-Form --> 
-
-<!-- Scripts --> 
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script> 
-<script src="assets/js/interface.js"></script> 
-<!--Switcher-->
-<script src="assets/switcher/js/switcher.js"></script>
-<!--bootstrap-slider-JS--> 
-<script src="assets/js/bootstrap-slider.min.js"></script> 
-<!--Slider-JS--> 
-<script src="assets/js/slick.min.js"></script> 
-<script src="assets/js/owl.carousel.min.js"></script>
-
+		<tr>
+											<th colspan="4" style="text-align:center;color:blue">Maklumat Pengguna</th>
+										</tr>
+										<tr>
+											<th>No. Tempahan</th>
+											<td>#<?php echo htmlentities($result->bookingid);?></td>
+											<th>Nama</th>
+											<td><?php echo htmlentities($result->fullname);?></td>
+										</tr>
+										<tr>											
+											<th>Jabatan/Unit</th>
+											<td><?php echo htmlentities($result->department);?></td>
+										</tr>
+											<tr>											
+											<th>Jawatan</th>
+											<td><?php echo htmlentities($result->position);?></td>
+										</tr>
+										<tr>
+											<th colspan="4" style="text-align:center;color:blue">Maklumat Tempahan</th>
+										</tr>
+											<tr>											
+											<th>Nombor Kenderaan</th>
+											<td><a href="edit-vehicle.php?id=<?php echo htmlentities($result->vehicleid);?>">,<?php echo htmlentities($result->vehiclenumber);?></td>
+										</tr>
+										<tr>
+											<th>Tarikh</th>
+											<td><?php echo htmlentities($result->date);?></td>
+											<th>Masa</th>
+											<td><?php echo htmlentities($result->time);?></td>
+											<th>Lokasi</th>
+											<td><?php echo htmlentities($result->location);?></td>
+										</tr>
+<tr>
+<th>Status Tempahan</th>
+<td>
+<?php 
+if($result->Status==0)
+{
+	echo htmlentities('Belum disahkan lagi');
+}
+else if ($result->Status==1)
+{
+	echo htmlentities('Disahkan');
+}
+else
+{
+ 	echo htmlentities('Dibatalkan');
+}
+?>
+</td>
+</tr>
+<?php if($result->Status==0)
+{?>
+<tr>	
+<td style="text-align:center" colspan="4">
+		<a href="booking-details.php?aeid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Anda mahu sahkan tempahan?')" class="btn btn-primary"> Sahkan tempahan</a>
+		<a href="booking-details.php?eid=<?php echo htmlentities($result->vehicleid);?>" onclick="return confirm('Anda mahu batalkan tempahan?')" class="btn btn-danger"> Batalkan tempahan</a>
+</td>
+</tr>
+<?php } ?>
+										<?php $cnt=$cnt+1; }} ?>
+									</tbody>
+								</table>
+								<form method="post">
+	   <input name="Submit2" type="submit" class="txtbox4" value="Print" onClick="return f3();" style="cursor: pointer;"  />
+	</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Loading Scripts -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap-select.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery.dataTables.min.js"></script>
+	<script src="js/dataTables.bootstrap.min.js"></script>
+	<script src="js/Chart.min.js"></script>
+	<script src="js/fileinput.js"></script>
+	<script src="js/chartData.js"></script>
+	<script src="js/main.js"></script>
+<script language="javascript" type="text/javascript">
+function f3()
+{
+window.print(); 
+return false;
+}
+</script>
+<script src="js/chartData.js"></script>
 </body>
-<!-- Mirrored from themes.webmasterdriver.net/carforyou/demo/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 16 Jun 2017 07:22:11 GMT -->
 </html>
+<?php } ?>

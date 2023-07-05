@@ -13,7 +13,7 @@ if(isset($_POST['updatepass']))
 $password=md5($_POST['password']);
 $newpassword=md5($_POST['newpassword']);
 $email=$_SESSION['login'];
-  $sql ="SELECT Password FROM tblusers WHERE EmailId=:email and Password=:password";
+  $sql ="SELECT Password FROM staff WHERE staff_email=:email and Password=:password";
 $query= $dbh -> prepare($sql);
 $query-> bindParam(':email', $email, PDO::PARAM_STR);
 $query-> bindParam(':password', $password, PDO::PARAM_STR);
@@ -21,7 +21,7 @@ $query-> execute();
 $results = $query -> fetchAll(PDO::FETCH_OBJ);
 if($query -> rowCount() > 0)
 {
-$con="update tblusers set Password=:newpassword where EmailId=:email";
+$con="update staff set Password=:newpassword where staff_email=:email";
 $chngpwd1 = $dbh->prepare($con);
 $chngpwd1-> bindParam(':email', $email, PDO::PARAM_STR);
 $chngpwd1-> bindParam(':newpassword', $newpassword, PDO::PARAM_STR);
@@ -38,7 +38,7 @@ $error="Your current password is wrong";
 <html lang="en">
 <head>
 
-<title>MDKT Car Booking System | Update Password</title>
+<title>Sistem Tempahan Kenderaan MDKT | Update Password</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
@@ -130,7 +130,7 @@ return true;
 
 <?php 
 $useremail=$_SESSION['login'];
-$sql = "SELECT * from tblusers where EmailId=:useremail";
+$sql = "SELECT * from staff where staff_email=:useremail";
 $query = $dbh -> prepare($sql);
 $query -> bindParam(':useremail',$useremail, PDO::PARAM_STR);
 $query->execute();
@@ -148,8 +148,8 @@ foreach($results as $result)
 
       <div class="dealer_info">
         <h5><?php echo htmlentities($result->FullName);?></h5>
-        <p><?php echo htmlentities($result->Address);?><br>
-          <?php echo htmlentities($result->City);?>&nbsp;<?php echo htmlentities($result->Country);}}?></p>
+        <p><?php echo htmlentities($result->ContactNo);?><br>
+          <?php echo htmlentities($result->departmet);?>&nbsp;<?php echo htmlentities($result->position);}}?></p>
       </div>
     </div>
     <div class="row">

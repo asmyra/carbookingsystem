@@ -7,7 +7,7 @@ error_reporting(0);
 <html lang="en">
 <head>
 
-<title>MDKT Car Booking System</title>
+<title>Sistem Tempahan Kenderaan MDKT</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <link rel="stylesheet" href="assets/css/style.css" type="text/css">

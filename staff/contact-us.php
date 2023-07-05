@@ -31,7 +31,7 @@ $error="Something went wrong. Please try again";
 <html lang="en">
 <head>
 
-<title>MDKT Car Booking System | Contact Us Page</title>
+<title>Sistem Tempahan Kenderaan MDKT | Contact Us Page</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->

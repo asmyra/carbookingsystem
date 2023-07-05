@@ -45,7 +45,7 @@ else
 	<meta name="author" content="">
 	<meta name="theme-color" content="#3e454c">
 	
-	<title>MDKT Car Booking System | Tempahan Baharu  </title>
+	<title>Sistem Tempahan Kenderaan MDKT | Tempahan Baharu  </title>
 
 	<!-- Font awesome -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">

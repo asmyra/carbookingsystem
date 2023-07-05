@@ -9,9 +9,9 @@ require_once('vendor/autoload.php');
 $pdf = new \TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 
 // Set the document information.
-$pdf->SetCreator('Company Name');
+$pdf->SetCreator('Majlis Daerah Kota Tinggi');
 $pdf->SetAuthor('John Doe');
-$pdf->SetTitle('Vehicle Usage Report');
+$pdf->SetTitle('Laporan Tempahan Kenderaan');
 $pdf->SetSubject('This report shows the yearly and monthly usage of vehicles in the company.');
 
 // Set the header and footer.
@@ -31,6 +31,6 @@ $pdf->WriteTable(array(
 ), $data);
 
 // Close the document.
-$pdf->Output('vehicle_usage_report.pdf', 'I');
+$pdf->Output('Laporan_TempahanKenderaan.pdf', 'I');
 
 ?>

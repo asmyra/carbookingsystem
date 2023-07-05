@@ -6,17 +6,17 @@
 require_once('vendor/autoload.php');
 
 // Connect to the database.
-$db = new PDO('mysql:host=localhost;dbname=vehicle_booking', 'root', '');
+$db = new PDO('mysql:host=localhost;dbname=carrental', 'root', '');
 
 // Get the booking status.
-$sql = 'SELECT status FROM bookings WHERE id = :id';
+$sql = 'SELECT status FROM bookings WHERE bookingid = :id';
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':id', $id);
 $stmt->execute();
 $status = $stmt->fetchColumn();
 
 // Get the user information.
-$sql = 'SELECT name, email FROM users WHERE id = :id';
+$sql = 'SELECT name, staff_email FROM staff WHERE staffid = :id';
 $stmt = $db->prepare($sql);
 $stmt->bindParam(':id', $user_id);
 $stmt->execute();

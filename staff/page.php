@@ -8,7 +8,7 @@ include('includes/config.php');
 <html lang="en">
 <head>
 
-<title>Sistem Tempahan Kenderaan MDKT | Page details</title>
+<title>Sistem Tempahan Kenderaan MDKT | Maklumat Halaman</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->

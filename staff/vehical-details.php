@@ -54,7 +54,7 @@ echo "<script>alert('Sesuatu telah berlaku. Sila cuba semula.');</script>";
 <html lang="en">
 <head>
 
-<title>MDKT Car Booking System | Maklumat Kenderaan</title>
+<title>Sistem Tempahan Kenderaan MDKT | Maklumat Kenderaan</title>
 <!--Bootstrap -->
 <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">
 <!--Custome Style -->
